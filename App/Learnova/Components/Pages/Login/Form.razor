@@ -1,10 +1,30 @@
-<MudContainer Class="d-flex justify-center vw-100 vh-100">
-    <MudPaper Class="vh-100 pa-3  cursor-copy z-3 " Elevation="3">
-        <MudContainer Class="d-flex gap-2 flex-row">
-            <MudPaper Class="pa-4" Elevation="1">
-                <MudText Class="align-self-center" Typo="Typo.h4">Learnova</MudText>
+
+<MudContainer Class="d-flex  justify-center vw-100 vh-100">
+    <MudPaper Class="vh-100 pa-3 z-3  object-bottom" Elevation="3">
+        <MudContainer Class="d-flex  gap-2 flex-row">
+            <MudPaper Class="pa-4 align-self-start" Elevation="1">
+                <MudText Class="vh-100 " Typo="Typo.h4">Learnova</MudText>
             </MudPaper>
-            <MudText Typo="Typo.h4" Class="bg-warning">Ciao</MudText>
+            <MudCard>
+                <MudCardHeader >
+                    <CardHeaderAvatar>
+                        <MudAvatar>
+                            <MudIcon Icon="@Icons.Material.Filled.Person"></MudIcon>
+                        </MudAvatar>
+                    </CardHeaderAvatar>
+                    <CardHeaderContent>
+                        <MudText>Login Utente</MudText>
+                    </CardHeaderContent>
+                </MudCardHeader>
+                <MudCardContent>
+                    <MudTextField T="string" Label="Email"></MudTextField>
+                    <MudTextField T="string" Label="Password" InputType="InputType.Password"></MudTextField>
+                </MudCardContent>
+                <MudCardActions>
+                    <MudButton Color="Color.Primary" ButtonType="ButtonType.Submit">Login</MudButton>
+                </MudCardActions>
+            </MudCard>
+            
         </MudContainer>
 
     </MudPaper>
