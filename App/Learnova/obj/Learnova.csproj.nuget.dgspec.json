@@ -1,25 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\SAMUELE\\Desktop\\Learnova\\App\\Learnova\\Learnova.csproj": {}
+    "/Users/samueletrapani/Desktop/Exercises/Learnova/App/Learnova/Learnova.csproj": {}
   },
   "projects": {
-    "C:\\Users\\SAMUELE\\Desktop\\Learnova\\App\\Learnova\\Learnova.csproj": {
+    "/Users/samueletrapani/Desktop/Exercises/Learnova/App/Learnova/Learnova.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\SAMUELE\\Desktop\\Learnova\\App\\Learnova\\Learnova.csproj",
+        "projectUniqueName": "/Users/samueletrapani/Desktop/Exercises/Learnova/App/Learnova/Learnova.csproj",
         "projectName": "Learnova",
-        "projectPath": "C:\\Users\\SAMUELE\\Desktop\\Learnova\\App\\Learnova\\Learnova.csproj",
-        "packagesPath": "C:\\Users\\SAMUELE\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\SAMUELE\\Desktop\\Learnova\\App\\Learnova\\obj\\",
+        "projectPath": "/Users/samueletrapani/Desktop/Exercises/Learnova/App/Learnova/Learnova.csproj",
+        "packagesPath": "/Users/samueletrapani/.nuget/packages/",
+        "outputPath": "/Users/samueletrapani/Desktop/Exercises/Learnova/App/Learnova/obj/",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\SAMUELE\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/Users/samueletrapani/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
@@ -73,7 +68,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "c:\\program files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.203/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

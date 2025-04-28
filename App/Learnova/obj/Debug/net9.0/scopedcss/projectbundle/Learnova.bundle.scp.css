@@ -1,5 +1,5 @@
 /* _content/Learnova/Components/Pages/Login/Background.razor.rz.scp.css */
-body[b-jzmif9aw35]{
+body[b-kt9ygxav3f]{
     margin: 0;
     padding: 0;
     background-color: #0e6cc4;
@@ -11,15 +11,15 @@ body[b-jzmif9aw35]{
 /*waves****************************/
 
 
-.box[b-jzmif9aw35] {
+.box[b-kt9ygxav3f] {
     position: fixed;
     top: 40px;
     transform: rotate(-20deg);
     left: 60px;
-    z-index: -1;
+    z-index: -11 !important;
 }
 
-.wave[b-jzmif9aw35] {
+.wave[b-kt9ygxav3f] {
     position: fixed;
     top: 0;
     left: 0;
@@ -34,44 +34,44 @@ body[b-jzmif9aw35]{
     margin-top: -250px;
     transform-origin: 50% 48%;
     border-radius: 43%;
-    animation: drift-b-jzmif9aw35 70000ms infinite linear;
+    animation: drift-b-kt9ygxav3f 70000ms infinite linear;
     z-index: -50 !important;
 }
 
-.wave.-three[b-jzmif9aw35] {
-    animation: drift-b-jzmif9aw35 75000ms infinite linear;
+.wave.-three[b-kt9ygxav3f] {
+    animation: drift-b-kt9ygxav3f 75000ms infinite linear;
     position: fixed;
     background-color: #77daff;
 }
 
-.wave.-two[b-jzmif9aw35] {
-    animation: drift-b-jzmif9aw35 50000ms infinite linear;
+.wave.-two[b-kt9ygxav3f] {
+    animation: drift-b-kt9ygxav3f 50000ms infinite linear;
     opacity: .1;
     background: black;
     position: fixed;
 }
 
-.box[b-jzmif9aw35]:after {
+.box[b-kt9ygxav3f]:after {
     content: '';
     display: block;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    z-index: 0;
+    z-index: -10;
     transform: translate3d(0, 0, 0);
 }
 
-@keyframes drift-b-jzmif9aw35 {
+@keyframes drift-b-kt9ygxav3f {
     from { transform: rotate(95deg); }
     from { transform: rotate(360deg); }
 }
 
 /*LOADING SPACE*/
 
-.contain[b-jzmif9aw35] {
+.contain[b-kt9ygxav3f] {
     animation-delay: 4s;
-    z-index: -1000;
+    z-index: -100;
     position: fixed;
     top: 0;
     left: 0;
@@ -94,20 +94,20 @@ body[b-jzmif9aw35]{
     background: linear-gradient(#25a7d7, #25a7d7);
 }
 
-.icon[b-jzmif9aw35] {
+.icon[b-kt9ygxav3f] {
     width: 100px;
     height: 100px;
     margin: 0 5px;
 }
 
 /*Animation*/
-.icon:nth-child(2) img[b-jzmif9aw35] {-webkit-animation-delay: 0.2s;animation-delay: 0.2s}
-.icon:nth-child(3) img[b-jzmif9aw35] {-webkit-animation-delay: 0.3s;animation-delay: 0.3s}
-.icon:nth-child(4) img[b-jzmif9aw35] {-webkit-animation-delay: 0.4s;animation-delay: 0.4s}
+.icon:nth-child(2) img[b-kt9ygxav3f] {-webkit-animation-delay: 0.2s;animation-delay: 0.2s}
+.icon:nth-child(3) img[b-kt9ygxav3f] {-webkit-animation-delay: 0.3s;animation-delay: 0.3s}
+.icon:nth-child(4) img[b-kt9ygxav3f] {-webkit-animation-delay: 0.4s;animation-delay: 0.4s}
 
-.icon img[b-jzmif9aw35] {
+.icon img[b-kt9ygxav3f] {
     -webkit-animation: anim 6s ease infinite;
-    animation: anim-b-jzmif9aw35 6s ease infinite;
+    animation: anim-b-kt9ygxav3f 6s ease infinite;
     -webkit-transform: scale(0,0) rotateZ(180deg);
     transform: scale(0,0) rotateZ(180deg);
 }
@@ -131,7 +131,7 @@ body[b-jzmif9aw35]{
     }
 }
 
-@keyframes anim-b-jzmif9aw35{
+@keyframes anim-b-kt9ygxav3f{
     0% {
         -webkit-transform: scale(0,0) rotateZ(-90deg);
         transform: scale(0,0) rotateZ(-90deg);opacity:0
