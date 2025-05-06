@@ -1,5 +1,5 @@
 ﻿
-<MudThemeProvider @ref=@themeProvider Theme="@learnovaTheme"></MudThemeProvider>
+<MudThemeProvider @ref=@themeProvider Theme="@learnovaTheme" ObserveSystemThemeChange="true"></MudThemeProvider>
 @code {
 
 	private MudThemeProvider? themeProvider = new MudThemeProvider();
@@ -33,10 +33,13 @@
 			},
 			PaletteDark = new PaletteDark()
 			{
-				Primary = Colors.BlueGray.Default,
+				Primary = Colors.Gray.Lighten3,
 				Secondary = Colors.LightBlue.Accent1,
-				Tertiary = Colors.BlueGray.Lighten1,
-				Background = Colors.BlueGray.Darken4
+				Tertiary = Colors.Gray.Lighten1,
+				Background = Colors.Gray.Lighten2,
+				TextPrimary = Colors.Shades.Black,
+				AppbarBackground=Colors.LightBlue.Darken4,
+				DrawerBackground = Colors.LightBlue.Darken4
 			}
 
 
