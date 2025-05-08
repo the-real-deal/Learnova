@@ -1,0 +1,56 @@
+﻿
+<MudThemeProvider @ref=@themeProvider Theme="@learnovaTheme" ObserveSystemThemeChange="true"></MudThemeProvider>
+@code {
+
+	private MudThemeProvider? themeProvider = new MudThemeProvider();
+
+
+	protected override async Task OnAfterRenderAsync(bool firstRender)
+	{
+		if (firstRender)
+		{
+			await themeProvider.WatchSystemPreference(OnSystemPreferenceChanged);
+			StateHasChanged();
+		}
+	}
+	private Task OnSystemPreferenceChanged(bool newValue)
+	{
+		themeProvider.IsDarkMode = newValue;
+		StateHasChanged();
+		return Task.CompletedTask;
+	}
+
+	private MudTheme learnovaTheme = new MudTheme()
+		{
+			PaletteLight = new PaletteLight()
+			{
+				Primary = Colors.LightBlue.Default,
+				Secondary = Colors.Amber.Default,
+				Tertiary = Colors.LightBlue.Lighten3,
+				Background = Colors.Gray.Lighten5,
+				AppbarBackground=Colors.LightBlue.Default
+
+			},
+			PaletteDark = new PaletteDark()
+			{
+				Primary = Colors.Gray.Lighten3,
+				Secondary = Colors.LightBlue.Accent1,
+				Tertiary = Colors.Gray.Lighten1,
+				Background = Colors.Gray.Lighten2,
+				TextPrimary = Colors.Shades.Black,
+				AppbarBackground=Colors.LightBlue.Darken4,
+				DrawerBackground = Colors.LightBlue.Darken4
+			}
+
+
+	};
+	public bool isDarkMode()
+	{
+		return this.themeProvider.IsDarkMode;
+	}
+	public void ToggleDarkMode()
+	{
+		this.themeProvider.IsDarkMode = !isDarkMode();
+	}
+
+}
