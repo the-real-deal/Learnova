@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "fYxyhLDUTnYvKrDJKmhFWz9ptTdXE/SPnWF5VvrCKEg=",
+  "Hash": "pSON5qb31cTrOqWcrxK+O41YeOgt+28DBGvxdqxwBc4=",
   "Source": "Learnova",
   "BasePath": "_content/Learnova",
   "Mode": "Default",
@@ -16,6 +16,48 @@
     }
   ],
   "Assets": [
+    {
+      "Identity": "/Users/samueletrapani/.nuget/packages/heron.mudcalendar/3.1.0/staticwebassets/Heron.MudCalendar.min.css",
+      "SourceId": "Heron.MudCalendar",
+      "SourceType": "Package",
+      "ContentRoot": "/Users/samueletrapani/.nuget/packages/heron.mudcalendar/3.1.0/staticwebassets/",
+      "BasePath": "_content/Heron.MudCalendar",
+      "RelativePath": "Heron.MudCalendar.min.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "7djute8x71",
+      "Integrity": "dU3kTWV0527sdvNPaTHkL0VAE5svf0pksHKAZewg0MY=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "/Users/samueletrapani/.nuget/packages/heron.mudcalendar/3.1.0/staticwebassets/Heron.MudCalendar.min.css"
+    },
+    {
+      "Identity": "/Users/samueletrapani/.nuget/packages/heron.mudcalendar/3.1.0/staticwebassets/Heron.MudCalendar.min.js",
+      "SourceId": "Heron.MudCalendar",
+      "SourceType": "Package",
+      "ContentRoot": "/Users/samueletrapani/.nuget/packages/heron.mudcalendar/3.1.0/staticwebassets/",
+      "BasePath": "_content/Heron.MudCalendar",
+      "RelativePath": "Heron.MudCalendar.min.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "jpb1mcz9kj",
+      "Integrity": "eRhc29Dg3WWehcmD4GvJHDmvSRCDrlIiYqh4BO3hmeA=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "/Users/samueletrapani/.nuget/packages/heron.mudcalendar/3.1.0/staticwebassets/Heron.MudCalendar.min.js"
+    },
     {
       "Identity": "/Users/samueletrapani/.nuget/packages/mudblazor/8.5.1/staticwebassets/MudBlazor.min.css",
       "SourceId": "MudBlazor",
@@ -437,6 +479,27 @@
       "OriginalItemSpec": "/Users/samueletrapani/Desktop/Exercises/Learnova/App/Learnova/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.min.css.map"
     },
     {
+      "Identity": "/Users/samueletrapani/Desktop/Exercises/Learnova/App/Learnova/obj/Debug/net9.0/compressed/eopr0x3mwt-7djute8x71.gz",
+      "SourceId": "Heron.MudCalendar",
+      "SourceType": "Package",
+      "ContentRoot": "/Users/samueletrapani/Desktop/Exercises/Learnova/App/Learnova/obj/Debug/net9.0/compressed/",
+      "BasePath": "_content/Heron.MudCalendar",
+      "RelativePath": "Heron.MudCalendar.min.css.gz",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "/Users/samueletrapani/.nuget/packages/heron.mudcalendar/3.1.0/staticwebassets/Heron.MudCalendar.min.css",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "Fingerprint": "4ankbg48q9",
+      "Integrity": "JOKA4X37xKyWVsv2gqrOimwe3M9Rhd/Ma1F+gmbt3tE=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "/Users/samueletrapani/.nuget/packages/heron.mudcalendar/3.1.0/staticwebassets/Heron.MudCalendar.min.css"
+    },
+    {
       "Identity": "/Users/samueletrapani/Desktop/Exercises/Learnova/App/Learnova/obj/Debug/net9.0/compressed/f7vd6vhoan-jj8uyg4cgr.gz",
       "SourceId": "Learnova",
       "SourceType": "Discovered",
@@ -603,6 +666,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "/Users/samueletrapani/Desktop/Exercises/Learnova/App/Learnova/wwwroot/lib/bootstrap/dist/js/bootstrap.min.js"
+    },
+    {
+      "Identity": "/Users/samueletrapani/Desktop/Exercises/Learnova/App/Learnova/obj/Debug/net9.0/compressed/jjtd6l0pqq-jpb1mcz9kj.gz",
+      "SourceId": "Heron.MudCalendar",
+      "SourceType": "Package",
+      "ContentRoot": "/Users/samueletrapani/Desktop/Exercises/Learnova/App/Learnova/obj/Debug/net9.0/compressed/",
+      "BasePath": "_content/Heron.MudCalendar",
+      "RelativePath": "Heron.MudCalendar.min.js.gz",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "/Users/samueletrapani/.nuget/packages/heron.mudcalendar/3.1.0/staticwebassets/Heron.MudCalendar.min.js",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "Fingerprint": "8cla0am0g8",
+      "Integrity": "iFKNGwRIQJ02lEnDkI4znsanv9IvALkWnxePNNwmWWc=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "/Users/samueletrapani/.nuget/packages/heron.mudcalendar/3.1.0/staticwebassets/Heron.MudCalendar.min.js"
     },
     {
       "Identity": "/Users/samueletrapani/Desktop/Exercises/Learnova/App/Learnova/obj/Debug/net9.0/compressed/k04qi419vk-hrwsygsryq.gz",
@@ -2097,6 +2181,370 @@
     }
   ],
   "Endpoints": [
+    {
+      "Route": "_content/Heron.MudCalendar/Heron.MudCalendar.min.7djute8x71.css",
+      "AssetFile": "/Users/samueletrapani/.nuget/packages/heron.mudcalendar/3.1.0/staticwebassets/Heron.MudCalendar.min.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "5080"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"dU3kTWV0527sdvNPaTHkL0VAE5svf0pksHKAZewg0MY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 07 May 2025 12:42:04 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "7djute8x71"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-dU3kTWV0527sdvNPaTHkL0VAE5svf0pksHKAZewg0MY="
+        },
+        {
+          "Name": "label",
+          "Value": "_content/Heron.MudCalendar/Heron.MudCalendar.min.css"
+        }
+      ]
+    },
+    {
+      "Route": "_content/Heron.MudCalendar/Heron.MudCalendar.min.css",
+      "AssetFile": "/Users/samueletrapani/.nuget/packages/heron.mudcalendar/3.1.0/staticwebassets/Heron.MudCalendar.min.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "5080"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"dU3kTWV0527sdvNPaTHkL0VAE5svf0pksHKAZewg0MY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 07 May 2025 12:42:04 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-dU3kTWV0527sdvNPaTHkL0VAE5svf0pksHKAZewg0MY="
+        }
+      ]
+    },
+    {
+      "Route": "_content/Heron.MudCalendar/Heron.MudCalendar.min.css",
+      "AssetFile": "/Users/samueletrapani/Desktop/Exercises/Learnova/App/Learnova/obj/Debug/net9.0/compressed/eopr0x3mwt-7djute8x71.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000811030008"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1232"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"JOKA4X37xKyWVsv2gqrOimwe3M9Rhd/Ma1F+gmbt3tE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 07 May 2025 12:42:04 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"dU3kTWV0527sdvNPaTHkL0VAE5svf0pksHKAZewg0MY=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-dU3kTWV0527sdvNPaTHkL0VAE5svf0pksHKAZewg0MY="
+        }
+      ]
+    },
+    {
+      "Route": "_content/Heron.MudCalendar/Heron.MudCalendar.min.css.gz",
+      "AssetFile": "/Users/samueletrapani/Desktop/Exercises/Learnova/App/Learnova/obj/Debug/net9.0/compressed/eopr0x3mwt-7djute8x71.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1232"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"JOKA4X37xKyWVsv2gqrOimwe3M9Rhd/Ma1F+gmbt3tE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 07 May 2025 12:42:04 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-JOKA4X37xKyWVsv2gqrOimwe3M9Rhd/Ma1F+gmbt3tE="
+        }
+      ]
+    },
+    {
+      "Route": "_content/Heron.MudCalendar/Heron.MudCalendar.min.jpb1mcz9kj.js",
+      "AssetFile": "/Users/samueletrapani/.nuget/packages/heron.mudcalendar/3.1.0/staticwebassets/Heron.MudCalendar.min.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "5581"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"eRhc29Dg3WWehcmD4GvJHDmvSRCDrlIiYqh4BO3hmeA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 07 May 2025 12:42:05 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "jpb1mcz9kj"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-eRhc29Dg3WWehcmD4GvJHDmvSRCDrlIiYqh4BO3hmeA="
+        },
+        {
+          "Name": "label",
+          "Value": "_content/Heron.MudCalendar/Heron.MudCalendar.min.js"
+        }
+      ]
+    },
+    {
+      "Route": "_content/Heron.MudCalendar/Heron.MudCalendar.min.js",
+      "AssetFile": "/Users/samueletrapani/.nuget/packages/heron.mudcalendar/3.1.0/staticwebassets/Heron.MudCalendar.min.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "5581"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"eRhc29Dg3WWehcmD4GvJHDmvSRCDrlIiYqh4BO3hmeA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 07 May 2025 12:42:05 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-eRhc29Dg3WWehcmD4GvJHDmvSRCDrlIiYqh4BO3hmeA="
+        }
+      ]
+    },
+    {
+      "Route": "_content/Heron.MudCalendar/Heron.MudCalendar.min.js",
+      "AssetFile": "/Users/samueletrapani/Desktop/Exercises/Learnova/App/Learnova/obj/Debug/net9.0/compressed/jjtd6l0pqq-jpb1mcz9kj.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000558659218"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1789"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"iFKNGwRIQJ02lEnDkI4znsanv9IvALkWnxePNNwmWWc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 07 May 2025 12:42:04 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"eRhc29Dg3WWehcmD4GvJHDmvSRCDrlIiYqh4BO3hmeA=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-eRhc29Dg3WWehcmD4GvJHDmvSRCDrlIiYqh4BO3hmeA="
+        }
+      ]
+    },
+    {
+      "Route": "_content/Heron.MudCalendar/Heron.MudCalendar.min.js.gz",
+      "AssetFile": "/Users/samueletrapani/Desktop/Exercises/Learnova/App/Learnova/obj/Debug/net9.0/compressed/jjtd6l0pqq-jpb1mcz9kj.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1789"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"iFKNGwRIQJ02lEnDkI4znsanv9IvALkWnxePNNwmWWc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 07 May 2025 12:42:04 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-iFKNGwRIQJ02lEnDkI4znsanv9IvALkWnxePNNwmWWc="
+        }
+      ]
+    },
     {
       "Route": "_content/MudBlazor/MudBlazor.min.css",
       "AssetFile": "/Users/samueletrapani/.nuget/packages/mudblazor/8.5.1/staticwebassets/MudBlazor.min.css",

@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "cnAIjjOf9Bw=",
+  "dgSpecHash": "90aZVRVFT54=",
   "success": true,
   "projectFilePath": "/Users/samueletrapani/Desktop/Exercises/Learnova/App/Learnova/Learnova.csproj",
   "expectedPackageFiles": [
+    "/Users/samueletrapani/.nuget/packages/heron.mudcalendar/3.1.0/heron.mudcalendar.3.1.0.nupkg.sha512",
     "/Users/samueletrapani/.nuget/packages/microsoft.aspnetcore.authorization/9.0.1/microsoft.aspnetcore.authorization.9.0.1.nupkg.sha512",
     "/Users/samueletrapani/.nuget/packages/microsoft.aspnetcore.components/9.0.1/microsoft.aspnetcore.components.9.0.1.nupkg.sha512",
     "/Users/samueletrapani/.nuget/packages/microsoft.aspnetcore.components.analyzers/9.0.1/microsoft.aspnetcore.components.analyzers.9.0.1.nupkg.sha512",

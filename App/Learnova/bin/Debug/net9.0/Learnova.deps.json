@@ -8,10 +8,117 @@
     ".NETCoreApp,Version=v9.0": {
       "Learnova/1.0.0": {
         "dependencies": {
+          "Heron.MudCalendar": "3.1.0",
           "MudBlazor": "8.5.1"
         },
         "runtime": {
           "Learnova.dll": {}
+        }
+      },
+      "Heron.MudCalendar/3.1.0": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Components": "9.0.1",
+          "Microsoft.AspNetCore.Components.Web": "9.0.1",
+          "Microsoft.Extensions.Localization": "9.0.1",
+          "MudBlazor": "8.5.1"
+        },
+        "runtime": {
+          "lib/net9.0/Heron.MudCalendar.dll": {
+            "assemblyVersion": "3.1.0.0",
+            "fileVersion": "3.1.0.0"
+          }
+        },
+        "resources": {
+          "lib/net9.0/bg/Heron.MudCalendar.resources.dll": {
+            "locale": "bg"
+          },
+          "lib/net9.0/cs/Heron.MudCalendar.resources.dll": {
+            "locale": "cs"
+          },
+          "lib/net9.0/da/Heron.MudCalendar.resources.dll": {
+            "locale": "da"
+          },
+          "lib/net9.0/de/Heron.MudCalendar.resources.dll": {
+            "locale": "de"
+          },
+          "lib/net9.0/el/Heron.MudCalendar.resources.dll": {
+            "locale": "el"
+          },
+          "lib/net9.0/es/Heron.MudCalendar.resources.dll": {
+            "locale": "es"
+          },
+          "lib/net9.0/et/Heron.MudCalendar.resources.dll": {
+            "locale": "et"
+          },
+          "lib/net9.0/fa/Heron.MudCalendar.resources.dll": {
+            "locale": "fa"
+          },
+          "lib/net9.0/fi/Heron.MudCalendar.resources.dll": {
+            "locale": "fi"
+          },
+          "lib/net9.0/fr/Heron.MudCalendar.resources.dll": {
+            "locale": "fr"
+          },
+          "lib/net9.0/hr/Heron.MudCalendar.resources.dll": {
+            "locale": "hr"
+          },
+          "lib/net9.0/hu/Heron.MudCalendar.resources.dll": {
+            "locale": "hu"
+          },
+          "lib/net9.0/id/Heron.MudCalendar.resources.dll": {
+            "locale": "id"
+          },
+          "lib/net9.0/it/Heron.MudCalendar.resources.dll": {
+            "locale": "it"
+          },
+          "lib/net9.0/ja/Heron.MudCalendar.resources.dll": {
+            "locale": "ja"
+          },
+          "lib/net9.0/ko/Heron.MudCalendar.resources.dll": {
+            "locale": "ko"
+          },
+          "lib/net9.0/lt/Heron.MudCalendar.resources.dll": {
+            "locale": "lt"
+          },
+          "lib/net9.0/lv/Heron.MudCalendar.resources.dll": {
+            "locale": "lv"
+          },
+          "lib/net9.0/nb/Heron.MudCalendar.resources.dll": {
+            "locale": "nb"
+          },
+          "lib/net9.0/nl/Heron.MudCalendar.resources.dll": {
+            "locale": "nl"
+          },
+          "lib/net9.0/pl/Heron.MudCalendar.resources.dll": {
+            "locale": "pl"
+          },
+          "lib/net9.0/pt/Heron.MudCalendar.resources.dll": {
+            "locale": "pt"
+          },
+          "lib/net9.0/ro/Heron.MudCalendar.resources.dll": {
+            "locale": "ro"
+          },
+          "lib/net9.0/ru/Heron.MudCalendar.resources.dll": {
+            "locale": "ru"
+          },
+          "lib/net9.0/sk/Heron.MudCalendar.resources.dll": {
+            "locale": "sk"
+          },
+          "lib/net9.0/sl/Heron.MudCalendar.resources.dll": {
+            "locale": "sl"
+          },
+          "lib/net9.0/sv/Heron.MudCalendar.resources.dll": {
+            "locale": "sv"
+          },
+          "lib/net9.0/tr/Heron.MudCalendar.resources.dll": {
+            "locale": "tr"
+          },
+          "lib/net9.0/uk/Heron.MudCalendar.resources.dll": {
+            "locale": "uk"
+          },
+          "lib/net9.0/zh/Heron.MudCalendar.resources.dll": {
+            "locale": "zh"
+          }
         }
       },
       "Microsoft.AspNetCore.Authorization/9.0.1": {
@@ -174,6 +281,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "Heron.MudCalendar/3.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ouJAcrUC5xUVxX8OLNAT3jjJbO4+b/Tf4113J+JeUBOsoy5qVDD6J98paKqiJHtaaaW61bmuvGqTD2maLFFvhg==",
+      "path": "heron.mudcalendar/3.1.0",
+      "hashPath": "heron.mudcalendar.3.1.0.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Authorization/9.0.1": {
       "type": "package",

@@ -383,6 +383,370 @@
       ]
     },
     {
+      "Route": "_content/Heron.MudCalendar/Heron.MudCalendar.min.7djute8x71.css",
+      "AssetFile": "_content/Heron.MudCalendar/Heron.MudCalendar.min.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "5080"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"dU3kTWV0527sdvNPaTHkL0VAE5svf0pksHKAZewg0MY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 07 May 2025 12:42:04 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "7djute8x71"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-dU3kTWV0527sdvNPaTHkL0VAE5svf0pksHKAZewg0MY="
+        },
+        {
+          "Name": "label",
+          "Value": "_content/Heron.MudCalendar/Heron.MudCalendar.min.css"
+        }
+      ]
+    },
+    {
+      "Route": "_content/Heron.MudCalendar/Heron.MudCalendar.min.css",
+      "AssetFile": "_content/Heron.MudCalendar/Heron.MudCalendar.min.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "5080"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"dU3kTWV0527sdvNPaTHkL0VAE5svf0pksHKAZewg0MY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 07 May 2025 12:42:04 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-dU3kTWV0527sdvNPaTHkL0VAE5svf0pksHKAZewg0MY="
+        }
+      ]
+    },
+    {
+      "Route": "_content/Heron.MudCalendar/Heron.MudCalendar.min.css",
+      "AssetFile": "_content/Heron.MudCalendar/Heron.MudCalendar.min.css.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000811030008"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1232"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"JOKA4X37xKyWVsv2gqrOimwe3M9Rhd/Ma1F+gmbt3tE=\""
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"dU3kTWV0527sdvNPaTHkL0VAE5svf0pksHKAZewg0MY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 07 May 2025 12:42:04 GMT"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-dU3kTWV0527sdvNPaTHkL0VAE5svf0pksHKAZewg0MY="
+        }
+      ]
+    },
+    {
+      "Route": "_content/Heron.MudCalendar/Heron.MudCalendar.min.css.gz",
+      "AssetFile": "_content/Heron.MudCalendar/Heron.MudCalendar.min.css.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1232"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"JOKA4X37xKyWVsv2gqrOimwe3M9Rhd/Ma1F+gmbt3tE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 07 May 2025 12:42:04 GMT"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-JOKA4X37xKyWVsv2gqrOimwe3M9Rhd/Ma1F+gmbt3tE="
+        }
+      ]
+    },
+    {
+      "Route": "_content/Heron.MudCalendar/Heron.MudCalendar.min.jpb1mcz9kj.js",
+      "AssetFile": "_content/Heron.MudCalendar/Heron.MudCalendar.min.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "5581"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"eRhc29Dg3WWehcmD4GvJHDmvSRCDrlIiYqh4BO3hmeA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 07 May 2025 12:42:05 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "jpb1mcz9kj"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-eRhc29Dg3WWehcmD4GvJHDmvSRCDrlIiYqh4BO3hmeA="
+        },
+        {
+          "Name": "label",
+          "Value": "_content/Heron.MudCalendar/Heron.MudCalendar.min.js"
+        }
+      ]
+    },
+    {
+      "Route": "_content/Heron.MudCalendar/Heron.MudCalendar.min.js",
+      "AssetFile": "_content/Heron.MudCalendar/Heron.MudCalendar.min.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "5581"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"eRhc29Dg3WWehcmD4GvJHDmvSRCDrlIiYqh4BO3hmeA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 07 May 2025 12:42:05 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-eRhc29Dg3WWehcmD4GvJHDmvSRCDrlIiYqh4BO3hmeA="
+        }
+      ]
+    },
+    {
+      "Route": "_content/Heron.MudCalendar/Heron.MudCalendar.min.js",
+      "AssetFile": "_content/Heron.MudCalendar/Heron.MudCalendar.min.js.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000558659218"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1789"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"iFKNGwRIQJ02lEnDkI4znsanv9IvALkWnxePNNwmWWc=\""
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"eRhc29Dg3WWehcmD4GvJHDmvSRCDrlIiYqh4BO3hmeA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 07 May 2025 12:42:04 GMT"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-eRhc29Dg3WWehcmD4GvJHDmvSRCDrlIiYqh4BO3hmeA="
+        }
+      ]
+    },
+    {
+      "Route": "_content/Heron.MudCalendar/Heron.MudCalendar.min.js.gz",
+      "AssetFile": "_content/Heron.MudCalendar/Heron.MudCalendar.min.js.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1789"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"iFKNGwRIQJ02lEnDkI4znsanv9IvALkWnxePNNwmWWc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 07 May 2025 12:42:04 GMT"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-iFKNGwRIQJ02lEnDkI4znsanv9IvALkWnxePNNwmWWc="
+        }
+      ]
+    },
+    {
       "Route": "_content/MudBlazor/MudBlazor.min.css",
       "AssetFile": "_content/MudBlazor/MudBlazor.min.css",
       "Selectors": [],

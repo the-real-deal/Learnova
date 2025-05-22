@@ -1,0 +1,19 @@
+<MudDialog>
+    <TitleContent>
+        <MudText Typo="Typo.h5">Eventi</MudText>
+    </TitleContent>
+    <DialogContent>
+        <MudContainer>
+            <MudText>Nessun evento in programma.</MudText>
+        </MudContainer>
+    </DialogContent>
+    <DialogActions>
+        <MudButton OnClick="Close" ButtonType="ButtonType.Button" Variant="Variant.Text">Chiudi</MudButton>
+    </DialogActions>
+</MudDialog>
+@code {
+    [CascadingParameter]
+    IMudDialogInstance MudDialog { get; set; }
+
+    void Close() => MudDialog.Close(DialogResult.Ok(true));
+}

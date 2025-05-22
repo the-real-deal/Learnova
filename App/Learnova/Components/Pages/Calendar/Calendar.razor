@@ -1,0 +1,11 @@
+@page "/Calendar"
+@inject IDialogService DialogService
+
+<MudCalendar T="CalendarItem" CellClicked="CellClicked" ></MudCalendar>
+@code {
+    
+    private Task CellClicked(DateTime dateTime)
+    {
+        return DialogService.ShowAsync<CalendarDialog>("Mario");
+    }
+}

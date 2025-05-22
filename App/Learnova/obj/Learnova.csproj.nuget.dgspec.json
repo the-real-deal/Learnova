@@ -44,6 +44,10 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "dependencies": {
+            "Heron.MudCalendar": {
+              "target": "Package",
+              "version": "[3.1.0, )"
+            },
             "MudBlazor": {
               "target": "Package",
               "version": "[8.5.1, )"
