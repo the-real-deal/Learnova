@@ -1,7 +1,10 @@
 @page "/Calendar"
 @inject IDialogService DialogService
+<MudContainer  Fixed="true">
+    <MudText Class="pa-3" Typo="Typo.h3">Calendario Eventi</MudText>
+    <MudCalendar Elevation="4" Class="pa-3" T="CalendarItem" CellClicked="CellClicked" Color="Color.Tertiary" ></MudCalendar>
 
-<MudCalendar T="CalendarItem" CellClicked="CellClicked" ></MudCalendar>
+</MudContainer>
 @code {
     
     private Task CellClicked(DateTime dateTime)
