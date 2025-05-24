@@ -1,1 +1,40 @@
 @page "/Subjects"
+
+<MudContainer MaxWidth="MaxWidth.Large" Class="mt-4">
+    <MudText Typo="Typo.h3" Class="mb-4">Overview Materie</MudText>
+
+    <MudTable Items="SubjectsList" Hover="true" Bordered="true">
+        <HeaderContent>
+            <MudTh>Materia</MudTh>
+            <MudTh>Media Voti</MudTh>
+        </HeaderContent>
+        <RowTemplate>
+            <MudTd>@context.Name</MudTd>
+            <MudTd>@context.Average.ToString("0.00")</MudTd>
+        </RowTemplate>
+    </MudTable>
+
+    <MudText Class="mt-4" Typo="Typo.h6">
+        <strong>Media generale:</strong> @OverallAverage.ToString("0.00")
+    </MudText>
+</MudContainer>
+
+@code {
+    private List<Subject> SubjectsList = new();
+    private double OverallAverage => SubjectsList.Any() ? SubjectsList.Average(s => s.Average) : 0;
+
+    protected override void OnInitialized()
+    {
+        SubjectsList = new List<Subject>
+        {
+            //Poi verranno prese dal DB
+            new Subject { Name = "Matematica", Average = 8.79 }
+        };
+    }
+
+    class Subject
+    {
+        public string Name { get; set; } = "";
+        public double Average { get; set; }
+    }
+}

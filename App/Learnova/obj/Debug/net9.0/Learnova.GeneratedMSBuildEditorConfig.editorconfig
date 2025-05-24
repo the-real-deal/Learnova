@@ -43,17 +43,12 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcTmF2TWVudS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-<<<<<<< HEAD
-[C:/Users/even2/Desktop/LEARNOVA/Learnova/App/Learnova/Components/Pages/Calendar/Calendar.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xDYWxlbmRhclxDYWxlbmRhci5yYXpvcg==
-=======
-[/Users/samueletrapani/Desktop/Exercises/Learnova/App/Learnova/Components/Pages/Calendar/AddEventDialog.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9DYWxlbmRhci9BZGRFdmVudERpYWxvZy5yYXpvcg==
+[C:/Users/even2/Desktop/LEARNOVA/Learnova/App/Learnova/Components/Pages/Calendar/AddEventDialog.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xDYWxlbmRhclxBZGRFdmVudERpYWxvZy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/samueletrapani/Desktop/Exercises/Learnova/App/Learnova/Components/Pages/Calendar/Calendar.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9DYWxlbmRhci9DYWxlbmRhci5yYXpvcg==
->>>>>>> ab8782f9ee3955bd840738a5f513a999441a5944
+[C:/Users/even2/Desktop/LEARNOVA/Learnova/App/Learnova/Components/Pages/Calendar/Calendar.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xDYWxlbmRhclxDYWxlbmRhci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/even2/Desktop/LEARNOVA/Learnova/App/Learnova/Components/Pages/Calendar/CalendarDialog.razor]
@@ -74,6 +69,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/even2/Desktop/LEARNOVA/Learnova/App/Learnova/Components/Pages/Login/Login.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xMb2dpblxMb2dpbi5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/even2/Desktop/LEARNOVA/Learnova/App/Learnova/Components/Pages/Subjects/Subjects.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xTdWJqZWN0c1xTdWJqZWN0cy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/even2/Desktop/LEARNOVA/Learnova/App/Learnova/Components/Routes.razor]
