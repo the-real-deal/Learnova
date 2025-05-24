@@ -1,0 +1,94 @@
+@using System.Runtime.InteropServices.JavaScript
+
+<MudDialog>
+    <TitleContent>
+        <MudText Typo="Typo.h5">Aggiungi un nuovo evento </MudText>
+    </TitleContent>
+    <DialogContent>
+        <MudForm @ref="form" >
+            <MudDatePicker Date="DateTime.Today" Required="true" @ref="date" Label="Giorno dell'evento"></MudDatePicker>
+            <MudTimePicker Validation="@(new Func<TimeSpan,string>(StartTimeValidation))" @ref="timeStart" Time="TimeSpan.FromHours(DateTime.Now.Hour)" TimeEditMode="TimeEditMode.OnlyHours" Required="true"  Label="Inizio Evento"></MudTimePicker>
+            <MudTimePicker Validation="@(new Func<TimeSpan,string>(EndTimeValidation))" @ref="timeEnd" Time="TimeSpan.FromHours(DateTime.Now.AddHours(1).Hour)" TimeEditMode="TimeEditMode.OnlyHours" Required="true"  Label="Fine Evento"></MudTimePicker>
+            <MudSelect Required="true" T="string" @bind-Value="selection" Label="Tipo di evento">
+                @foreach (string s in eventTypes)
+                {
+                    <MudSelectItem T="string" Value="@s"></MudSelectItem>
+                }
+            </MudSelect>
+            <MudTextField bind-Value="description"  Required="true" T="string" Label="Descrizione"></MudTextField>
+        </MudForm>
+        
+    </DialogContent>
+    <DialogActions>
+        <MudButton OnClick="Cancel">Annulla</MudButton>
+        <MudButton OnClick="AddEvent" Variant="Variant.Filled" Color="Color.Success">Aggiungi Evento</MudButton>
+    </DialogActions>
+</MudDialog>
+@code {
+    private MudDatePicker? date = new MudDatePicker();
+    public MudTimePicker? timeStart = new MudTimePicker();
+    public MudTimePicker? timeEnd = new MudTimePicker();
+    private MudForm? form = new MudForm();
+    public string? selection { get; set; }
+    private string? description { get; set; }
+    
+    public List<string> eventTypes = new List<string>()
+    {
+        "Compito",
+        "Gita",
+        "Altro",
+        "Verifica",
+        "Interrogazione"
+    };
+    [CascadingParameter]
+    IMudDialogInstance MudDialog { get; set; }
+    /*
+     * Bad practise!!!
+     * Reduntant function (don't care)
+     */
+    private string EndTimeValidation(TimeSpan t)
+    {
+        int start = timeStart.Time.Value.Hours;
+        int end = t.Hours;
+        if (start<end)
+        {
+            return "L'orario di inizio dell'evento deve essere precedente a quello di fine";
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    private string StartTimeValidation(TimeSpan t)
+    {
+        int start = t.Hours;
+        int end = timeEnd.Time.Value.Hours;
+        if (start>end)
+        {
+            return "L'orario di inizio dell'evento deve essere precedente a quello di fine";
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    private async Task AddEvent()
+    {
+        await form.Validate();
+        if (form.IsValid)
+        {
+            CalendarItem e = new CalendarItem()
+            {
+                Start = date.Date.Value.AddHours(timeStart.Time.Value.Hours),
+                End = date.Date.Value.AddHours(timeEnd.Time.Value.Hours),
+                Text = selection
+            };
+            MudDialog.Close(DialogResult.Ok(e));
+        }
+    }
+
+    private void Cancel() => MudDialog.Cancel();
+
+}

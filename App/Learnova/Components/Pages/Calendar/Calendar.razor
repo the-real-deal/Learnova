@@ -1,14 +1,68 @@
 @page "/Calendar"
 @inject IDialogService DialogService
-<MudContainer  Fixed="true">
-    <MudText Class="pa-3" Typo="Typo.h3">Calendario Eventi</MudText>
-    <MudCalendar Elevation="4" Class="pa-3" T="CalendarItem" CellClicked="CellClicked" Color="Color.Tertiary" ></MudCalendar>
 
+<MudContainer  Fixed="true">
+    <MudText Class="pa-3" Typo="Typo.h3">Calendario Eventi @items[items.Count-1].Start.ToString() @items[items.Count-1].End.ToString() </MudText>
+    <MudCalendar Items="items" @ref="@calendar"  Use24HourClock="true" Elevation="4" Class="pa-3" T="CalendarItem" CellClicked="CellClicked" Color="Color.Tertiary">
+            <ToolbarContent>
+                <MudButton Variant="Variant.Filled" Color="Color.Secondary" OnClick="AddEvent">Aggiungi</MudButton>
+            </ToolbarContent>
+    </MudCalendar>
 </MudContainer>
 @code {
-    
+
+    private bool isAdmin = true;
+    private MudCalendar<CalendarItem> calendar = new MudCalendar<CalendarItem>();
+
+    private List<CalendarItem> items =new()
+    {
+        new CalendarItem()
+        {
+            Start = DateTime.Today.AddHours(6),
+            End = DateTime.Today.AddHours(12),
+            Text = "Evento Test"
+        }
+    };
     private Task CellClicked(DateTime dateTime)
     {
-        return DialogService.ShowAsync<CalendarDialog>("Mario");
+        return DialogService.ShowAsync<CalendarDialog>("CalendarCell");
     }
+
+    void Test()
+    {
+        var start = DateTime.Today.AddDays(Random.Shared.NextDouble() * 10);
+        items.Add(new CalendarItem()
+        {
+            Start = start,
+            End = start.AddHours(Random.Shared.NextDouble()*10%5),
+            Text = "AAAAA"
+        });
+    }
+
+    private async Task AddEvent()
+    {  
+        var dialogReference = await DialogService.ShowAsync<AddEventDialog>("EventAdded");
+        
+        var result = await dialogReference.Result;
+        if (!result.Canceled)
+        { 
+            //Test();
+            CalendarItem i = (CalendarItem)result.Data;
+            if (i is not null)
+            {
+                items.Add(new CalendarItem()
+                {
+                    Start = i.Start,
+                    End = i.End,
+                    Text = i.Text
+                });
+                
+            }
+        }
+        StateHasChanged();
+        calendar.Refresh();
+        
+    }
+
+    
 }
