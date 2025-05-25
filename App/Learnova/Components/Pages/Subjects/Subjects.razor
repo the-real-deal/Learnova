@@ -3,7 +3,11 @@
 <MudContainer MaxWidth="MaxWidth.Large" Class="mt-4">
     <MudText Typo="Typo.h3" Class="mb-4">Overview Materie</MudText>
 
-    <MudTable Items="SubjectsList" Hover="true" Bordered="true">
+    <MudText Class="mt-4" Typo="Typo.h6">
+        <strong>Media generale:</strong> @OverallAverage.ToString("0.00")
+    </MudText>
+    
+    <MudTable Items="SubjectsList" Bordered="true">
         <HeaderContent>
             <MudTh>Materia</MudTh>
             <MudTh>Media Voti</MudTh>
@@ -13,10 +17,7 @@
             <MudTd>@context.Average.ToString("0.00")</MudTd>
         </RowTemplate>
     </MudTable>
-
-    <MudText Class="mt-4" Typo="Typo.h6">
-        <strong>Media generale:</strong> @OverallAverage.ToString("0.00")
-    </MudText>
+    
 </MudContainer>
 
 @code {
