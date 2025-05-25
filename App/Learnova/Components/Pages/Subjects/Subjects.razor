@@ -1,13 +1,45 @@
 @page "/Subjects"
 
-<MudContainer MaxWidth="MaxWidth.Large" Class="mt-4">
-    <MudText Typo="Typo.h3" Class="mb-4">Overview Materie</MudText>
-
-    <MudText Class="mt-4" Typo="Typo.h6">
-        <strong>Media generale:</strong> @OverallAverage.ToString("0.00")
-    </MudText>
+<MudContainer  MaxWidth="MaxWidth.Large" Class="mt-4">
     
-    <MudTable Items="SubjectsList" Bordered="true">
+    <MudText Typo="Typo.h3" Class="mb-4">Overview Materie</MudText>
+    <MudText Class="mt-4" Typo="Typo.h6">
+        <strong>Media generale:</strong> @(overallAverage.Value.ToString("N2"))
+    </MudText>
+    <MudExpansionPanels>
+        @foreach (string s in subjectsList.Keys)
+        {
+            <MudExpansionPanel>
+                <TitleContent>
+                    <MudContainer Class="d-flex">
+                        
+                        <MudAvatar Elevation="2" Variant="Variant.Text" Class="d-flex" Color="Color.Primary">@s[0]</MudAvatar>
+                        <MudContainer  Class="p-5">
+                            <MudText Class="p-5">@s</MudText>
+                        </MudContainer>
+                        
+                    </MudContainer>
+                </TitleContent>
+                <ChildContent>
+                    <MudTable Items="subjectsList[s]">
+                        <HeaderContent>
+                            <MudTh>Voto</MudTh>
+                            <MudTh>Descrizione</MudTh>
+                        </HeaderContent>
+                        <RowTemplate>
+                            <MudTd>
+                                <MudAvatar Color="Color.Secondary">@context.value.ToString("N2")</MudAvatar>
+                            </MudTd>
+                            <MudTd>@context.description</MudTd>
+                        </RowTemplate>
+
+                    </MudTable>
+                    
+                </ChildContent>
+            </MudExpansionPanel>
+        }
+    </MudExpansionPanels>
+    @*<MudTable Items="subjectsList" Bordered="true">
         <HeaderContent>
             <MudTh>Materia</MudTh>
             <MudTh>Media Voti</MudTh>
@@ -16,26 +48,38 @@
             <MudTd>@context.Name</MudTd>
             <MudTd>@context.Average.ToString("0.00")</MudTd>
         </RowTemplate>
-    </MudTable>
-    
+    </MudTable>*@
+
 </MudContainer>
 
 @code {
-    private List<Subject> SubjectsList = new();
-    private double OverallAverage => SubjectsList.Any() ? SubjectsList.Average(s => s.Average) : 0;
-
+    private Dictionary<string,List<Grade>> subjectsList = new Dictionary<string, List<Grade>>();
+    private double? overallAverage;
+    private string[] subjects = { "Matematica", "Italiano", "Latino", "Informatica" };
     protected override void OnInitialized()
     {
-        SubjectsList = new List<Subject>
+        foreach (string s in subjects)
         {
-            //Poi verranno prese dal DB
-            new Subject { Name = "Matematica", Average = 8.79 }
-        };
-    }
+            List<Grade> tmp = new List<Grade>();
+            
+            for (int i = 0; i < 10; i++)
+            {
+                
+                tmp.Add(new Grade()
+                {
+                    description = $"Verifica {i+1}",
+                    value = System.Math.Round((Random.Shared.NextDouble()*6+4),2)
+                });
+            }
+            subjectsList.Add(s,tmp);
+        }
 
-    class Subject
+        overallAverage = subjectsList.Values.SelectMany(x => x).Distinct().Select(x => x.value).Average();
+    }
+    
+    class Grade
     {
-        public string Name { get; set; } = "";
-        public double Average { get; set; }
+        public string description { get; set; } = "";
+        public double value { get; set; }
     }
 }
