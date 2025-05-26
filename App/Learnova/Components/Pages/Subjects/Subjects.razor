@@ -1,44 +1,61 @@
 @page "/Subjects"
-
-<MudContainer  MaxWidth="MaxWidth.Large" Class="mt-4">
+@using Learnova.Commons
+@inject IDialogService DialogService
+<MudText Typo="Typo.h3" Class="mb-4">Overview Materie</MudText>
+<MudContainer  MaxWidth="MaxWidth.Large" Class="m-4 d-flex">
+    <MudPaper Class="d-flex flex-column px-5 py-5" Elevation="2" >
+        <MudText Align="Align.Center" Inline="true" Typo="Typo.h5">
+            <strong>MEDIA GENERALE</strong> 
+        </MudText>
+        <MudAvatar Class="mx-6 my-8" Style="height: 25dvh;width: 25dvh; font-size: xxx-large" Color="Color.Success">@(overallAverage.Value.ToString("N2"))</MudAvatar>
+        
+    </MudPaper>
     
-    <MudText Typo="Typo.h3" Class="mb-4">Overview Materie</MudText>
-    <MudText Class="mt-4" Typo="Typo.h6">
-        <strong>Media generale:</strong> @(overallAverage.Value.ToString("N2"))
-    </MudText>
-    <MudExpansionPanels>
-        @foreach (string s in subjectsList.Keys)
-        {
-            <MudExpansionPanel>
-                <TitleContent>
-                    <MudContainer Class="d-flex">
-                        
-                        <MudAvatar Elevation="2"  Class="d-flex" Color="Color.Primary">@s[0]</MudAvatar>
-                        <MudContainer  Class="p-5">
-                            <MudText Class="p-5">@s</MudText>
+    <MudContainer Class="ml-2" MaxWidth="MaxWidth.Large">
+        
+        <MudExpansionPanels >
+            @foreach (string s in subjectsList.Keys)
+            {
+                <MudExpansionPanel>
+                    <TitleContent>
+                        <MudContainer Class="d-flex">
+                            <MudAvatar Elevation="2" Size="Size.Large"  Class="d-flex" Color="Color.Primary">@s.Substring(0,3).ToUpper()</MudAvatar>
+                            <MudContainer  Class="p-5">
+                                <MudText Class="p-5">@s</MudText>
+                            </MudContainer>
+                            <MudButton OnClick="@(()=> AddGrade(@s))" Color="Color.Primary">Aggiungi Voto</MudButton>
                         </MudContainer>
-                        
-                    </MudContainer>
-                </TitleContent>
-                <ChildContent>
-                    <MudTable Items="subjectsList[s]">
-                        <HeaderContent>
-                            <MudTh>Voto</MudTh>
-                            <MudTh>Descrizione</MudTh>
-                        </HeaderContent>
-                        <RowTemplate>
-                            <MudTd>
-                                <MudAvatar Color="Color.Secondary">@context.value.ToString("N2")</MudAvatar>
-                            </MudTd>
-                            <MudTd>@context.description</MudTd>
-                        </RowTemplate>
+                    </TitleContent>
+                    <ChildContent>
+                        <MudTable Items="subjectsList[s]">
+                            <HeaderContent>
+                                <MudTh>Voto</MudTh>
+                                <MudTh>Descrizione</MudTh>
+                                @if (isAdmin)
+                                {
+                                    <MudTh></MudTh>
+                                }
+                            </HeaderContent>
+                            <RowTemplate>
+                                <MudTd>
+                                    <MudAvatar Color="Color.Secondary">@context.value.ToString("N2")</MudAvatar>
+                                </MudTd>
+                                <MudTd>@context.description</MudTd>
+                                @if (isAdmin)
+                                {
+                                    <MudTd>
+                                        <MudButton OnClick="@(() => EditGrade(@context))" Color="Color.Tertiary">Modifica</MudButton>
+                                    </MudTd>
+                                }
+                            </RowTemplate>
 
-                    </MudTable>
-                    
-                </ChildContent>
-            </MudExpansionPanel>
-        }
-    </MudExpansionPanels>
+                        </MudTable>
+                        
+                    </ChildContent>
+                </MudExpansionPanel>
+            }
+        </MudExpansionPanels>
+    </MudContainer>
     @*<MudTable Items="subjectsList" Bordered="true">
         <HeaderContent>
             <MudTh>Materia</MudTh>
@@ -55,16 +72,22 @@
 @code {
     private Dictionary<string,List<Grade>> subjectsList = new Dictionary<string, List<Grade>>();
     private double? overallAverage;
+    public bool isAdmin = true;
     private string[] subjects = { "Matematica", "Italiano", "Latino", "Informatica","Storia" };
+
+    
     protected override void OnInitialized()
     {
+        int count = 0;
         foreach (string s in subjects)
         {
+            count++;
             List<Grade> tmp = new List<Grade>();
             for (int i = 0; i < 10; i++)
             {
                 tmp.Add(new Grade()
                 {
+                    id = count,
                     description = $"Verifica {i+1}",
                     value = System.Math.Round((Random.Shared.NextDouble()*6+4),2)
                 });
@@ -72,12 +95,52 @@
             subjectsList.Add(s,tmp);
         }
 
-        overallAverage = subjectsList.Values.SelectMany(x => x).Distinct().Select(x => x.value).Average();
+        CalculateOverall();
     }
-    
-    class Grade
+
+    private async Task EditGrade(Grade g)
     {
-        public string description { get; set; } = "";
-        public double value { get; set; }
+        DialogParameters parameters = new DialogParameters<GradeDialog>
+        {
+            {x => x.grade, g}
+        };
+        var dialogReference = await DialogService.ShowAsync<GradeDialog>("Edit",parameters);
+        var result = await dialogReference.Result;
+        if (!result.Canceled)
+        {
+            Grade edited = result.Data as Grade;
+            
+            var entry =subjectsList.First(x => x.Value.Contains(g));
+            
+            subjectsList[entry.Key].Remove(g);
+            subjectsList[entry.Key].Add(edited);
+        }
+        CalculateOverall();
+        StateHasChanged();
+        
     }
+
+    private async Task AddGrade(string subject)
+    {
+        DialogParameters parameters = new DialogParameters<GradeDialog>
+        {
+            {x => x.grade, new Grade()
+            {
+                id = subjectsList.Values.SelectMany(x=>x).Select(x => x.id).Max() + 1
+            }}
+        };
+        var dialogReference = await DialogService.ShowAsync<GradeDialog>("Add",parameters);
+        var result = await dialogReference.Result;
+        if (!result.Canceled)
+        {
+            Grade? added = result.Data as Grade;
+            subjectsList[subject].Add(added);
+        }
+        CalculateOverall();
+        StateHasChanged();
+    }
+
+    private void CalculateOverall() => overallAverage = subjectsList.Values.SelectMany(x => x).Distinct().Select(x => x.value).Average();
+    
+    
 }

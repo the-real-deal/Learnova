@@ -1,0 +1,23 @@
+@using Learnova.Commons
+<MudDialog>
+    <TitleContent>
+        <MudText Typo="Typo.h5">Modifica Voto</MudText>
+    </TitleContent>
+    <DialogContent>
+        <MudTextField @bind-Value="@grade.value" Format="F2" T="double" Label="Voto"></MudTextField>
+        <MudTextField @bind-Value="@grade.description" AutoGrow="true" InputType="InputType.Text" T="string" Label="Descrizione"></MudTextField>
+    </DialogContent>
+    <DialogActions>
+        <MudButton ButtonType="ButtonType.Button" Variant="Variant.Text" Color="Color.Primary" OnClick="@MudDialog.Cancel">Annulla</MudButton>
+        <MudButton ButtonType="ButtonType.Button" Variant="Variant.Filled" Color="Color.Secondary" OnClick="@(()=> MudDialog.Close(grade))">Salva</MudButton>
+    </DialogActions>
+</MudDialog>
+
+@code {
+    [Parameter] 
+    public Grade grade { get; set; }
+    [CascadingParameter]
+    IMudDialogInstance MudDialog { get; set; }
+
+    
+}

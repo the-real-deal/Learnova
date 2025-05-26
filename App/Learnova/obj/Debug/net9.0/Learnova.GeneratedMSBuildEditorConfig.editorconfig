@@ -71,6 +71,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9Mb2dpbi9Mb2dpbi5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
+[/Users/samueletrapani/Desktop/Exercises/Learnova/App/Learnova/Components/Pages/Subjects/GradeDialog.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9TdWJqZWN0cy9HcmFkZURpYWxvZy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/samueletrapani/Desktop/Exercises/Learnova/App/Learnova/Components/Pages/Subjects/Subjects.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9TdWJqZWN0cy9TdWJqZWN0cy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
