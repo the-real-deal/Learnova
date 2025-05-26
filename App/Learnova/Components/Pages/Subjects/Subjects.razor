@@ -55,16 +55,14 @@
 @code {
     private Dictionary<string,List<Grade>> subjectsList = new Dictionary<string, List<Grade>>();
     private double? overallAverage;
-    private string[] subjects = { "Matematica", "Italiano", "Latino", "Informatica" };
+    private string[] subjects = { "Matematica", "Italiano", "Latino", "Informatica","Storia" };
     protected override void OnInitialized()
     {
         foreach (string s in subjects)
         {
             List<Grade> tmp = new List<Grade>();
-            
             for (int i = 0; i < 10; i++)
             {
-                
                 tmp.Add(new Grade()
                 {
                     description = $"Verifica {i+1}",

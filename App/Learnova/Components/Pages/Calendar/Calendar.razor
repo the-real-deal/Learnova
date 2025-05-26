@@ -5,7 +5,10 @@
     <MudText Class="pa-3" Typo="Typo.h3">Calendario Eventi @items[items.Count-1].Start.ToString() @items[items.Count-1].End.ToString() </MudText>
     <MudCalendar Items="items" @ref="@calendar"  Use24HourClock="true" Elevation="4" Class="pa-3" T="CalendarItem" CellClicked="CellClicked" Color="Color.Tertiary">
             <ToolbarContent>
-                <MudButton Variant="Variant.Filled" Color="Color.Secondary" OnClick="AddEvent">Aggiungi</MudButton>
+                @if (isAdmin)
+                {
+                    <MudButton Variant="Variant.Filled" Color="Color.Secondary" OnClick="AddEvent">Aggiungi</MudButton>
+                }
             </ToolbarContent>
     </MudCalendar>
 </MudContainer>
