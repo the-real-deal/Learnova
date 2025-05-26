@@ -23,7 +23,11 @@
                             <MudContainer  Class="p-5">
                                 <MudText Class="p-5">@s</MudText>
                             </MudContainer>
-                            <MudButton OnClick="@(()=> AddGrade(@s))" Color="Color.Primary">Aggiungi Voto</MudButton>
+                            @if (isAdmin)
+                            {
+                                <MudButton OnClick="@(()=> AddGrade(@s))" Color="Color.Primary">Aggiungi Voto</MudButton>
+                                
+                            }
                         </MudContainer>
                     </TitleContent>
                     <ChildContent>
@@ -72,7 +76,7 @@
 @code {
     private Dictionary<string,List<Grade>> subjectsList = new Dictionary<string, List<Grade>>();
     private double? overallAverage;
-    public bool isAdmin = true;
+    public bool isAdmin = false;
     private string[] subjects = { "Matematica", "Italiano", "Latino", "Informatica","Storia" };
 
     
