@@ -1,25 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "/Users/samueletrapani/Desktop/Exercises/Learnova/App/Learnova/Learnova.csproj": {}
+    "C:\\Users\\even2\\Desktop\\LEARNOVA\\Learnova\\App\\Learnova\\Learnova.csproj": {}
   },
   "projects": {
-    "/Users/samueletrapani/Desktop/Exercises/Learnova/App/Learnova/Learnova.csproj": {
+    "C:\\Users\\even2\\Desktop\\LEARNOVA\\Learnova\\App\\Learnova\\Learnova.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/samueletrapani/Desktop/Exercises/Learnova/App/Learnova/Learnova.csproj",
+        "projectUniqueName": "C:\\Users\\even2\\Desktop\\LEARNOVA\\Learnova\\App\\Learnova\\Learnova.csproj",
         "projectName": "Learnova",
-        "projectPath": "/Users/samueletrapani/Desktop/Exercises/Learnova/App/Learnova/Learnova.csproj",
-        "packagesPath": "/Users/samueletrapani/.nuget/packages/",
-        "outputPath": "/Users/samueletrapani/Desktop/Exercises/Learnova/App/Learnova/obj/",
+        "projectPath": "C:\\Users\\even2\\Desktop\\LEARNOVA\\Learnova\\App\\Learnova\\Learnova.csproj",
+        "packagesPath": "C:\\Users\\even2\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\even2\\Desktop\\LEARNOVA\\Learnova\\App\\Learnova\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/samueletrapani/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\even2\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -72,7 +74,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.203/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Users\\even2\\.dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
