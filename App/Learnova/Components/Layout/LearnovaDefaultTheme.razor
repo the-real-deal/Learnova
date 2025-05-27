@@ -3,24 +3,10 @@
 @code {
 
 	private MudThemeProvider? themeProvider = new MudThemeProvider();
-
-
-	protected override async Task OnAfterRenderAsync(bool firstRender)
+	public MudTheme learnovaTheme { get; set; }
+	protected override void OnInitialized()
 	{
-		if (firstRender)
-		{
-			await themeProvider.WatchSystemPreference(OnSystemPreferenceChanged);
-			StateHasChanged();
-		}
-	}
-	private Task OnSystemPreferenceChanged(bool newValue)
-	{
-		themeProvider.IsDarkMode = newValue;
-		StateHasChanged();
-		return Task.CompletedTask;
-	}
-
-	private MudTheme learnovaTheme = new MudTheme()
+		learnovaTheme = new MudTheme()
 		{
 			PaletteLight = new PaletteLight()
 			{
@@ -49,7 +35,25 @@
 			}
 
 
-	};
+		};
+	}
+
+	protected override async Task OnAfterRenderAsync(bool firstRender)
+	{
+		if (firstRender)
+		{
+			await themeProvider.WatchSystemPreference(OnSystemPreferenceChanged);
+			StateHasChanged();
+		}
+	}
+	private Task OnSystemPreferenceChanged(bool newValue)
+	{
+		themeProvider.IsDarkMode = newValue;
+		StateHasChanged();
+		return Task.CompletedTask;
+	}
+	
+    
 	public bool isDarkMode()
 	{
 		
