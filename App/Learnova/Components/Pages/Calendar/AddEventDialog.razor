@@ -1,4 +1,5 @@
 @using System.Runtime.InteropServices.JavaScript
+@using Learnova.Commons
 
 <MudDialog>
     <TitleContent>
@@ -15,7 +16,7 @@
                     <MudSelectItem T="string" Value="@s"></MudSelectItem>
                 }
             </MudSelect>
-            <MudTextField bind-Value="description"  Required="true" T="string" Label="Descrizione"></MudTextField>
+            <MudTextField @bind-Value="description"  Required="true" T="string" Label="Descrizione"></MudTextField>
         </MudForm>
         
     </DialogContent>
@@ -79,11 +80,16 @@
         await form.Validate();
         if (form.IsValid)
         {
-            CalendarItem e = new CalendarItem()
+            CalendarItem i = new CalendarItem()
             {
                 Start = date.Date.Value.AddHours(timeStart.Time.Value.Hours),
                 End = date.Date.Value.AddHours(timeEnd.Time.Value.Hours),
                 Text = selection
+            };
+            CalendarEvent e = new CalendarEvent()
+            {
+                description = description,
+                item = i
             };
             MudDialog.Close(DialogResult.Ok(e));
         }
