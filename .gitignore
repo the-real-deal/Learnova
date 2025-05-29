@@ -1,4 +1,5 @@
 .~lock.Learnova.lun#
-**/bin
-**/obj
+bin
+obj
 .razor
+.idea
