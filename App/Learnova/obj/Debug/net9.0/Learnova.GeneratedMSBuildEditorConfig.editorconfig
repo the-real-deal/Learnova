@@ -12,81 +12,81 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Learnova
 build_property.RootNamespace = Learnova
-build_property.ProjectDir = /Users/samueletrapani/Desktop/Exercises/Learnova/App/Learnova/
+build_property.ProjectDir = C:\Users\even2\Desktop\LEARNOVA\Learnova\App\Learnova\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 9.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = /Users/samueletrapani/Desktop/Exercises/Learnova/App/Learnova
+build_property.MSBuildProjectDirectory = C:\Users\even2\Desktop\LEARNOVA\Learnova\App\Learnova
 build_property._RazorSourceGeneratorDebug = 
 build_property.EffectiveAnalysisLevelStyle = 9.0
 build_property.EnableCodeStyleSeverity = 
 
-[/Users/samueletrapani/Desktop/Exercises/Learnova/App/Learnova/Components/App.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9BcHAucmF6b3I=
+[C:/Users/even2/Desktop/LEARNOVA/Learnova/App/Learnova/Components/App.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBcHAucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/samueletrapani/Desktop/Exercises/Learnova/App/Learnova/Components/Layout/EmptyLayout.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9MYXlvdXQvRW1wdHlMYXlvdXQucmF6b3I=
+[C:/Users/even2/Desktop/LEARNOVA/Learnova/App/Learnova/Components/Layout/EmptyLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcRW1wdHlMYXlvdXQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/samueletrapani/Desktop/Exercises/Learnova/App/Learnova/Components/Layout/LearnovaDefaultTheme.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9MYXlvdXQvTGVhcm5vdmFEZWZhdWx0VGhlbWUucmF6b3I=
+[C:/Users/even2/Desktop/LEARNOVA/Learnova/App/Learnova/Components/Layout/LearnovaDefaultTheme.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcTGVhcm5vdmFEZWZhdWx0VGhlbWUucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/samueletrapani/Desktop/Exercises/Learnova/App/Learnova/Components/Layout/MainLayout.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9MYXlvdXQvTWFpbkxheW91dC5yYXpvcg==
+[C:/Users/even2/Desktop/LEARNOVA/Learnova/App/Learnova/Components/Layout/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcTWFpbkxheW91dC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/samueletrapani/Desktop/Exercises/Learnova/App/Learnova/Components/Layout/NavMenu.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9MYXlvdXQvTmF2TWVudS5yYXpvcg==
+[C:/Users/even2/Desktop/LEARNOVA/Learnova/App/Learnova/Components/Layout/NavMenu.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcTmF2TWVudS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/samueletrapani/Desktop/Exercises/Learnova/App/Learnova/Components/Pages/Calendar/AddEventDialog.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9DYWxlbmRhci9BZGRFdmVudERpYWxvZy5yYXpvcg==
+[C:/Users/even2/Desktop/LEARNOVA/Learnova/App/Learnova/Components/Pages/Calendar/AddEventDialog.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xDYWxlbmRhclxBZGRFdmVudERpYWxvZy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/samueletrapani/Desktop/Exercises/Learnova/App/Learnova/Components/Pages/Calendar/Calendar.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9DYWxlbmRhci9DYWxlbmRhci5yYXpvcg==
+[C:/Users/even2/Desktop/LEARNOVA/Learnova/App/Learnova/Components/Pages/Calendar/Calendar.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xDYWxlbmRhclxDYWxlbmRhci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/samueletrapani/Desktop/Exercises/Learnova/App/Learnova/Components/Pages/Calendar/CalendarDialog.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9DYWxlbmRhci9DYWxlbmRhckRpYWxvZy5yYXpvcg==
+[C:/Users/even2/Desktop/LEARNOVA/Learnova/App/Learnova/Components/Pages/Calendar/CalendarDialog.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xDYWxlbmRhclxDYWxlbmRhckRpYWxvZy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/samueletrapani/Desktop/Exercises/Learnova/App/Learnova/Components/Pages/Dashboard.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9EYXNoYm9hcmQucmF6b3I=
+[C:/Users/even2/Desktop/LEARNOVA/Learnova/App/Learnova/Components/Pages/Dashboard.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xEYXNoYm9hcmQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/samueletrapani/Desktop/Exercises/Learnova/App/Learnova/Components/Pages/Error.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9FcnJvci5yYXpvcg==
+[C:/Users/even2/Desktop/LEARNOVA/Learnova/App/Learnova/Components/Pages/Error.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xFcnJvci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/samueletrapani/Desktop/Exercises/Learnova/App/Learnova/Components/Pages/Login/Form.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9Mb2dpbi9Gb3JtLnJhem9y
+[C:/Users/even2/Desktop/LEARNOVA/Learnova/App/Learnova/Components/Pages/Login/Form.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xMb2dpblxGb3JtLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/samueletrapani/Desktop/Exercises/Learnova/App/Learnova/Components/Pages/Login/Login.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9Mb2dpbi9Mb2dpbi5yYXpvcg==
+[C:/Users/even2/Desktop/LEARNOVA/Learnova/App/Learnova/Components/Pages/Login/Login.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xMb2dpblxMb2dpbi5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/samueletrapani/Desktop/Exercises/Learnova/App/Learnova/Components/Pages/Subjects/GradeDialog.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9TdWJqZWN0cy9HcmFkZURpYWxvZy5yYXpvcg==
+[C:/Users/even2/Desktop/LEARNOVA/Learnova/App/Learnova/Components/Pages/Subjects/GradeDialog.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xTdWJqZWN0c1xHcmFkZURpYWxvZy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/samueletrapani/Desktop/Exercises/Learnova/App/Learnova/Components/Pages/Subjects/Subjects.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9TdWJqZWN0cy9TdWJqZWN0cy5yYXpvcg==
+[C:/Users/even2/Desktop/LEARNOVA/Learnova/App/Learnova/Components/Pages/Subjects/Subjects.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xTdWJqZWN0c1xTdWJqZWN0cy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/samueletrapani/Desktop/Exercises/Learnova/App/Learnova/Components/Routes.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9Sb3V0ZXMucmF6b3I=
+[C:/Users/even2/Desktop/LEARNOVA/Learnova/App/Learnova/Components/Routes.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xSb3V0ZXMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/samueletrapani/Desktop/Exercises/Learnova/App/Learnova/Components/_Imports.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9fSW1wb3J0cy5yYXpvcg==
+[C:/Users/even2/Desktop/LEARNOVA/Learnova/App/Learnova/Components/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xfSW1wb3J0cy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/samueletrapani/Desktop/Exercises/Learnova/App/Learnova/Components/Pages/Login/Background.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9Mb2dpbi9CYWNrZ3JvdW5kLnJhem9y
-build_metadata.AdditionalFiles.CssScope = b-kt9ygxav3f
+[C:/Users/even2/Desktop/LEARNOVA/Learnova/App/Learnova/Components/Pages/Login/Background.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xMb2dpblxCYWNrZ3JvdW5kLnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-jzmif9aw35
