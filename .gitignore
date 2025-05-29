@@ -1,3 +1,7 @@
 .~lock.Learnova.lun#
 bin
-.obj
+obj
+.razor
+.idea
+Context
+Entities
