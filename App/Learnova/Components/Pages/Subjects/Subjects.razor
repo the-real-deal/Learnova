@@ -1,6 +1,5 @@
 @page "/Subjects"
 @using Learnova.Commons
-@using MudBlazor.Utilities
 @inject IDialogService DialogService
 <MudText Typo="Typo.h3" Class="mb-4">Overview Materie</MudText>
 <MudContainer  MaxWidth="MaxWidth.Large" Class="m-4 d-flex">
@@ -9,8 +8,8 @@
             <strong>MEDIA GENERALE</strong> 
         </MudText>
         <MudChart   ChartType="ChartType.Donut" InputData="@(new[] {  10 - @overallAverage.Value, overallAverage.Value })">
-            <CustomGraphics>
-                <text class="donut-inner-text" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="black" font-family="Helvetica" font-size="50">@(overallAverage.Value.ToString("N2"))</text>
+            <CustomGraphics  >
+                <text class="donut-inner-text "   x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="black" font-family="Helvetica" font-size="50">@(overallAverage.Value.ToString("N2"))</text>
             </CustomGraphics>
         </MudChart>
         

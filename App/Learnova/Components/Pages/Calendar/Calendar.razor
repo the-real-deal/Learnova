@@ -1,9 +1,10 @@
 @page "/Calendar"
+@using Learnova.Commons
 @inject IDialogService DialogService
 
 <MudContainer  Fixed="true">
-    <MudText Class="pa-3" Typo="Typo.h3">Calendario Eventi @items[items.Count-1].Start.ToString() @items[items.Count-1].End.ToString() </MudText>
-    <MudCalendar Items="items" @ref="@calendar"  Use24HourClock="true" Elevation="4" Class="pa-3" T="CalendarItem" CellClicked="CellClicked" Color="Color.Tertiary">
+    <MudText Class="pa-3" Typo="Typo.h3">Calendario Eventi @items.Select(x=> x.item).ToList()[items.Count-1].Start.ToString() @items.Select(x=> x.item).ToList()[items.Count-1].End.ToString() </MudText>
+    <MudCalendar Items="items.Select(x => x.item)" @ref="@calendar"  Use24HourClock="true" Elevation="4" Class="pa-3" T="CalendarItem" CellClicked="@(e => CellClicked(items.Select(x=> x.item).Where(x=> x.Start.DayOfYear==e.Date.DayOfYear).ToList()))" Color="Color.Tertiary">
             <ToolbarContent>
                 @if (isAdmin)
                 {
@@ -16,31 +17,56 @@
 
     private bool isAdmin = true;
     private MudCalendar<CalendarItem> calendar = new MudCalendar<CalendarItem>();
-
-    private List<CalendarItem> items =new()
+    
+    private List<CalendarEvent> items =new()
     {
-        new CalendarItem()
+        new CalendarEvent()
         {
-            Start = DateTime.Today.AddHours(6),
-            End = DateTime.Today.AddHours(12),
-            Text = "Evento Test"
+            id = 0,
+            description = "BBBBAAAAALLLOOOO",
+            item = new CalendarItem()
+            {
+                Start = DateTime.Today.AddHours(6).AddDays(2),
+                End = DateTime.Today.AddHours(12).AddDays(2),
+                Text = "Altro"
+            }
+        },
+        new CalendarEvent()
+        {
+            id = 0,
+            description = "Verifica victor mainezz",
+            item = new CalendarItem()
+            {
+                Start = DateTime.Today.AddHours(6).AddDays(-7),
+                End = DateTime.Today.AddHours(12).AddDays(-7),
+                Text = "Verifica"
+            }
+        },
+        new CalendarEvent()
+        {
+            id = 0,
+            description = "Mario",
+            item = new CalendarItem()
+            {
+                Start = DateTime.Today.AddHours(6).AddDays(-12),
+                End = DateTime.Today.AddHours(12).AddDays(-12),
+                Text = "Gita"
+            }
         }
+        
+        
     };
-    private Task CellClicked(DateTime dateTime)
+    private Task CellClicked(List<CalendarItem> i)
     {
-        return DialogService.ShowAsync<CalendarDialog>("CalendarCell");
+        
+        DialogParameters parameters = new DialogParameters<CalendarDialog>
+        {
+            {x => x.events,i.Select(y => items.Where(x => x.item.Start==y.Start)).SelectMany(x => x).Distinct().ToList()}
+        };        
+        return DialogService.ShowAsync<CalendarDialog>("CalendarCell",parameters);
     }
 
-    void Test()
-    {
-        var start = DateTime.Today.AddDays(Random.Shared.NextDouble() * 10);
-        items.Add(new CalendarItem()
-        {
-            Start = start,
-            End = start.AddHours(Random.Shared.NextDouble()*10%5),
-            Text = "AAAAA"
-        });
-    }
+    
 
     private async Task AddEvent()
     {  
@@ -50,16 +76,16 @@
         if (!result.Canceled)
         { 
             
-            CalendarItem i = (CalendarItem)result.Data;
+            CalendarEvent i = (CalendarEvent)result.Data;
             if (i is not null)
             {
-                items.Add(new CalendarItem()
+                items.Add(new CalendarEvent()
                 {
-                    Start = i.Start,
-                    End = i.End,
-                    Text = i.Text
+                    id = items.Select(x => x.id).Max() + 1,
+                    description = i.description,
+                    item = i.item
                 });
-                
+
             }
         }
         StateHasChanged();

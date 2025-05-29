@@ -1,17 +1,43 @@
+@using Learnova.Commons
 <MudDialog>
     <TitleContent>
         <MudText Typo="Typo.h5">Eventi</MudText>
     </TitleContent>
     <DialogContent>
-        <MudContainer>
-            <MudText>Nessun evento in programma.</MudText>
-        </MudContainer>
+        @if (events.Count == 0)
+        {
+            <MudContainer>
+                <MudText Typo="Typo.h6">Nessun evento in programma.</MudText>
+            </MudContainer>
+        }
+        else
+        {
+            <MudContainer>
+                <MudExpansionPanels>
+                    @foreach (CalendarEvent item in events)
+                    {
+                        <MudExpansionPanel>
+                            <TitleContent>
+                                <MudText>@item.item.Text</MudText>
+                            </TitleContent>
+                            <ChildContent>
+                                <MudTimePicker ReadOnly="true" Label="Ora Inizio" Time="@item.item.Start.TimeOfDay"></MudTimePicker>
+                                <MudTimePicker ReadOnly="true" Label="Ora Fine" Time="@item.item.End.Value.TimeOfDay"></MudTimePicker>
+                                <MudTextField Label="Descrizione" T="string" Text="@item.description" ReadOnly="true"></MudTextField>
+                            </ChildContent>
+                        </MudExpansionPanel>
+                    }
+                </MudExpansionPanels>
+            </MudContainer>
+        }
     </DialogContent>
     <DialogActions>
         <MudButton OnClick="Close" ButtonType="ButtonType.Button" Variant="Variant.Text">Chiudi</MudButton>
     </DialogActions>
 </MudDialog>
 @code {
+    [Parameter]
+    public List<CalendarEvent> events { get; set; }
     [CascadingParameter]
     IMudDialogInstance MudDialog { get; set; }
 
