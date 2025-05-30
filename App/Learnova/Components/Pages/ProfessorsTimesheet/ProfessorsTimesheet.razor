@@ -3,7 +3,7 @@
 @using Learnova.Entities
 @using Microsoft.EntityFrameworkCore
 
-<MudSelect bind-Value="selectedTeacher" T="string" Label="Seleziona professore">
+<MudSelect ValueChanged="StateHasChanged" bind-Value="selectedTeacher" T="string" Label="Seleziona professore">
     @foreach (Professori professore in prof)
     {
         <MudSelectItem T="string" Value="professore.Cf">
@@ -28,11 +28,15 @@
         </MudTd>
         @for (int i=0; i<=5; i++)
         {
-            <MudTd DataLabel="@WeekDay(i)">
-                @if (@lezione.Where(x => x.CodiceProfessore==selectedTeacher).Any(l => l.Giorno.Equals(i) && l.Ora.Equals(@context)))
+            <MudTd>
+                @if (@lezione.Select(x=>x.CodiceProfessores))
                 {
+                    // if (@lezione.Where(x => x.CodiceProfessore == "RSSFRC86R50H501M").Contains())
+                    // {
+                    //
+                    // }
                     @* @lezione.First(x => x.Giorno.Equals(i) && x.Ora.Equals(@context)).CodiceClasse *@
-                    <MudText>TU sorella</MudText>
+                    <MudText>tu mamma</MudText>
                 }
             </MudTd>
         }
@@ -41,23 +45,24 @@
 
 @code
 {
-    public IQueryable<Cattedra> lezione { get; set; }
-    public IQueryable<Professori> prof { get; set; }
-    public string selectedTeacher { get; set; }
+    public IQueryable<LezioniProgrammate> lezione { get; set; }
+    public string selectedTeacher { get; set; } = null;
     public List<int> ore { get; set; }
     protected override void OnInitialized()
     {
         MyDbContext dbContext = new MyDbContext();
-        
-        lezione = dbContext.Cattedras.Include(x => x.LezioniProgrammate) ;
-        prof = dbContext.Professoris;
-        
-        ore = dbContext.Cattedras.Select(x => x.Ora).Distinct().ToList();
+
+        lezione = dbContext.LezioniProgrammates;
+
+        ore = dbContext.LezioniProgrammates.Select(x => x.Ora).Distinct().ToList();
         ore.Sort();
+
+        selectedTeacher = dbContext.Professoris.First(x => true).Cf;
     }
 
     public string WeekDay(int s)
     {
+
         string o = "";
         switch (s)
         {
