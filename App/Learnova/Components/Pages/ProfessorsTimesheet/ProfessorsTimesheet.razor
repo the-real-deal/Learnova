@@ -3,62 +3,81 @@
 @using Learnova.Entities
 @using Microsoft.EntityFrameworkCore
 
-<MudSelect ValueChanged="StateHasChanged" bind-Value="selectedTeacher" T="string" Label="Seleziona professore">
-    @foreach (Professori professore in prof)
-    {
-        <MudSelectItem T="string" Value="professore.Cf">
-            @($"{@professore.Nome} {@professore.Cognome} {professore.Cf}")
-        </MudSelectItem>
-    }
-</MudSelect>
 
-<MudTable Items="ore">
-    <HeaderContent>
-        <MudTh>Ora</MudTh>
-        <MudTh>Lunedì</MudTh>
-        <MudTh>Martedì</MudTh>
-        <MudTh>Mercoldì</MudTh>
-        <MudTh>Giovedì</MudTh>
-        <MudTh>Venerdì</MudTh>
-        <MudTh>Sabato</MudTh>
-    </HeaderContent>
-    <RowTemplate>
-        <MudTd DataLabel="Ora">
-            @context
-        </MudTd>
-        @for (int i=0; i<=5; i++)
+<MudText Class="ml-5" Typo="Typo.h2">Lezioni Programmate</MudText>
+<MudContainer Class="mt-2">
+    <MudSelect  @bind-Value="selectedTeacher"  T="string"  Label="Seleziona professore">
+        @foreach (Professori professore in prof)
         {
-            <MudTd>
-                @if (@lezione.Select(x=>x.CodiceProfessores))
-                {
-                    // if (@lezione.Where(x => x.CodiceProfessore == "RSSFRC86R50H501M").Contains())
-                    // {
-                    //
-                    // }
-                    @* @lezione.First(x => x.Giorno.Equals(i) && x.Ora.Equals(@context)).CodiceClasse *@
-                    <MudText>tu mamma</MudText>
-                }
-            </MudTd>
+            <MudSelectItem T="string"  Value="@professore.Cf">
+                @($"{@professore.Nome} {@professore.Cognome}")
+            </MudSelectItem>
         }
-    </RowTemplate>
-</MudTable>
+    </MudSelect>
+
+
+
+
+    <MudTable Items="ore">
+        <HeaderContent>
+            <MudTh>Ora</MudTh>
+            <MudTh>Lunedì</MudTh>
+            <MudTh>Martedì</MudTh>
+            <MudTh>Mercoldì</MudTh>
+            <MudTh>Giovedì</MudTh>
+            <MudTh>Venerdì</MudTh>
+            <MudTh>Sabato</MudTh>
+        </HeaderContent>
+        <RowTemplate>
+            <MudTd DataLabel="Ora">
+                @context
+            </MudTd>
+            @for (int k=0; k<=5; k++)
+            {
+                var tmp = @lezione.FirstOrDefault(x => x.Giorno.Equals(k) && x.Ora.Equals(context) && x.CodiceProfessores.Any(y => y.Cf == selectedTeacher));
+                @if (tmp is not null)
+                {
+                    <MudTd>
+                        <MudPaper Outlined="true" >
+                            <MudText Align="Align.Center">@(tmp.CodiceClasseNavigation.CodicePianoStudioNavigation.Anno + tmp.CodiceClasseNavigation.Sezione)</MudText>
+                            <MudText Align="Align.Center">@(tmp.CodiceClasseNavigation.CodicePianoStudioNavigation.CodiceIndirizzoNavigation.Nome)</MudText>
+                        </MudPaper>
+                    
+                    </MudTd>
+                }
+                else
+                {
+                    <MudTd>@("/")</MudTd>
+                }
+           
+            }
+        </RowTemplate>
+    </MudTable>
+</MudContainer>
+
 
 @code
 {
     public IQueryable<LezioniProgrammate> lezione { get; set; }
-    public string selectedTeacher { get; set; } = null;
+    public static IQueryable<Professori> prof { get; set; }
+    public string selectedTeacher { get; set; }
     public List<int> ore { get; set; }
+
     protected override void OnInitialized()
     {
         MyDbContext dbContext = new MyDbContext();
 
-        lezione = dbContext.LezioniProgrammates;
-
+        lezione = dbContext.LezioniProgrammates.Include(x => x.CodiceProfessores)
+            .Include(x => x.CodiceClasseNavigation)
+            .Include(x => x.CodiceClasseNavigation.CodicePianoStudioNavigation)
+            .Include(x => x.CodiceClasseNavigation.CodicePianoStudioNavigation.CodiceIndirizzoNavigation);
+        prof = lezione.Select(x => x.CodiceProfessores).SelectMany(x => x).Distinct();
         ore = dbContext.LezioniProgrammates.Select(x => x.Ora).Distinct().ToList();
         ore.Sort();
-
-        selectedTeacher = dbContext.Professoris.First(x => true).Cf;
+        selectedTeacher = prof.First().Cf;
     }
+
+    
 
     public string WeekDay(int s)
     {

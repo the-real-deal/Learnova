@@ -26,13 +26,19 @@
     </DialogActions>
 </MudDialog>
 @code {
+    
     private MudDatePicker? date = new MudDatePicker();
     public MudTimePicker? timeStart = new MudTimePicker();
     public MudTimePicker? timeEnd = new MudTimePicker();
     private MudForm? form = new MudForm();
     public string? selection { get; set; }
     private string? description { get; set; }
-    
+
+    protected override void OnInitialized()
+    {
+        selection = eventTypes.First();
+    }
+
     public List<string> eventTypes = new List<string>()
     {
         "Compito",
