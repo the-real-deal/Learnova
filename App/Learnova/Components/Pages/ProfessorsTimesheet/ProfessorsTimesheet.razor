@@ -6,10 +6,10 @@
 
 <MudText Class="ml-5" Typo="Typo.h2">Lezioni Programmate</MudText>
 <MudContainer Class="mt-2">
-    <MudSelect  @bind-Value="selectedTeacher"  T="string"  Label="Seleziona professore">
-        @foreach (Professori professore in prof)
+    <MudSelect  @bind-Value="selectedTeacher"  T="Professori"  Label="Seleziona professore">
+        @foreach (Professori professore in prof.OrderBy(x => x.Cognome))
         {
-            <MudSelectItem T="string"  Value="@professore.Cf">
+            <MudSelectItem T="Professori"  Value="@professore">
                 @($"{@professore.Nome} {@professore.Cognome}")
             </MudSelectItem>
         }
@@ -30,11 +30,11 @@
         </HeaderContent>
         <RowTemplate>
             <MudTd DataLabel="Ora">
-                @context
+                @(context+"°")
             </MudTd>
             @for (int k=0; k<=5; k++)
             {
-                var tmp = @lezione.FirstOrDefault(x => x.Giorno.Equals(k) && x.Ora.Equals(context) && x.CodiceProfessores.Any(y => y.Cf == selectedTeacher));
+                var tmp = @lezione.FirstOrDefault(x => x.Giorno.Equals(k) && x.Ora.Equals(context) && x.CodiceProfessores.Any(y => y.Cf == selectedTeacher.Cf));
                 @if (tmp is not null)
                 {
                     <MudTd>
@@ -60,7 +60,7 @@
 {
     public IQueryable<LezioniProgrammate> lezione { get; set; }
     public static IQueryable<Professori> prof { get; set; }
-    public string selectedTeacher { get; set; }
+    public Professori selectedTeacher { get; set; }
     public List<int> ore { get; set; }
 
     protected override void OnInitialized()
@@ -74,7 +74,7 @@
         prof = lezione.Select(x => x.CodiceProfessores).SelectMany(x => x).Distinct();
         ore = dbContext.LezioniProgrammates.Select(x => x.Ora).Distinct().ToList();
         ore.Sort();
-        selectedTeacher = prof.First().Cf;
+        selectedTeacher = prof.First();
     }
 
     
