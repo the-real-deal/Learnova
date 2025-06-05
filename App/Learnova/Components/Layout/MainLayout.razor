@@ -1,4 +1,5 @@
-﻿@inherits LayoutComponentBase
+﻿@using Learnova.Entities
+@inherits LayoutComponentBase
 
 <LearnovaDefaultTheme @ref=theme ></LearnovaDefaultTheme>
 <MudPopoverProvider />
@@ -12,7 +13,7 @@
         <MudIconButton OnClick="@theme.ToggleDarkMode" Icon="@(DarkLightModeButtonIcon)" Color="Color.Inherit"/>
     </MudAppBar>
     <MudDrawer id="nav-drawer" Variant="@DrawerVariant.Mini" OpenMiniOnHover="true" @bind-Open="_drawerOpen" ClipMode="DrawerClipMode.Always" Elevation="2">
-        <NavMenu/>
+        <NavMenu />
     </MudDrawer>
     <MudMainContent>
         @Body

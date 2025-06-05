@@ -1,4 +1,8 @@
-
+@using Learnova.Context
+@using Learnova.Entities
+@using Microsoft.EntityFrameworkCore
+@inject Account User
+@inject NavigationManager NavigationManager
 <MudContainer Class="d-flex align-center justify-center" style="height:100vh;">
     <MudPaper Class="pa-2 rounded-5"Elevation="6">
         <MudContainer Class="d-flex gap-2 justify-center" >
@@ -6,23 +10,25 @@
                 <MudImage ObjectFit="ObjectFit.Contain" Width="200" Height="200" Fluid="true" Src="favicon.ico" ></MudImage>
             </MudPaper>
             <MudCard >
-                <MudCardHeader >
-                    <CardHeaderAvatar>
-                        <MudAvatar>
-                            <MudIcon Icon="@Icons.Material.Filled.Person"></MudIcon>
-                        </MudAvatar>
-                    </CardHeaderAvatar>
-                    <CardHeaderContent>
-                        <MudText >Login Utente</MudText>
-                    </CardHeaderContent>
-                </MudCardHeader>
-                <MudCardContent>
-                    <MudTextField T="string" Label="Email"></MudTextField>
-                    <MudTextField T="string" Label="Password" InputType="InputType.Password"></MudTextField>
-                </MudCardContent>
-                <MudCardActions>
-                    <MudButton   FullWidth=true Href="/Dashboard" Variant="Variant.Outlined" EndIcon="@Icons.Material.Rounded.Login" Color="Color.Secondary" Class="btn-check" ButtonType="ButtonType.Submit">Login</MudButton>
-                </MudCardActions>
+                <MudForm @ref="form" bind-IsValid="valid" >
+                    <MudCardHeader >
+                        <CardHeaderAvatar>
+                            <MudAvatar>
+                                <MudIcon Icon="@Icons.Material.Filled.Person"></MudIcon>
+                            </MudAvatar>
+                        </CardHeaderAvatar>
+                        <CardHeaderContent>
+                            <MudText >Login Utente</MudText>
+                        </CardHeaderContent>
+                    </MudCardHeader>
+                    <MudCardContent>
+                        <MudTextField @bind-Value="@Username" Required="true" T="string" Label="Username"></MudTextField>
+                        <MudTextField @bind-Value="@Password" Required="true" T="string" Label="Password" InputType="InputType.Password"></MudTextField>
+                    </MudCardContent>
+                    <MudCardActions>
+                        <MudButton OnClick="Test" FullWidth=true Variant="Variant.Outlined" EndIcon="@Icons.Material.Rounded.Login" Color="Color.Secondary" Class="btn-check" >Login</MudButton>
+                    </MudCardActions>
+                </MudForm>
             </MudCard>
             
         </MudContainer>
@@ -33,5 +39,36 @@
     
 
 @code {
+    public string Username { get; set; }
+    public string Password { get; set; }
+    public MyDbContext Db = new MyDbContext();
+    public bool valid = true;
     
+    public MudForm? form;
+    
+    private void Test()
+    {
+        
+        form.Validate();
+        var tmp = Db.Accounts.Include(x => x.CodiceRuoloNavigation)
+            .FirstOrDefault(x => x.Username.ToLower() == Username.ToLower() && x.Password == Password && x.Attivo==true);
+        AccountInit(tmp);
+        if (User is not null)
+        {
+            valid = true;
+            NavigationManager.NavigateTo("/Dashboard");
+        }
+
+        valid = false;
+    }
+
+    public void AccountInit(Account tmp)
+    {
+        User.Password = tmp.Password;
+        User.Username = tmp.Username;
+        User.CodiceRuoloNavigation = tmp.CodiceRuoloNavigation;
+        User.Attivo = tmp.Attivo;
+        User.Mail = tmp.Mail;
+        User.CodiceRuolo = tmp.CodiceRuolo;
+    }
 }

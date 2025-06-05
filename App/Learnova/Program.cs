@@ -1,4 +1,5 @@
 using Learnova.Components;
+using Learnova.Entities;
 using MudBlazor.Services;
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,6 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 builder.Services.AddMudServices();
+builder.Services.AddSingleton<Account>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
