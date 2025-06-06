@@ -24,14 +24,13 @@
         <MudList T="Studenti" Dense="true">
             @foreach (var s in studenti.OrderBy(x => x.Cognome))
             {
+                //aaaaaNot following the DRY rule...
                 if (User.CodiceRuolo == 1 || User.CodiceRuolo == 2)
                 {
                     <MudListItem T="Studenti" @onclick="() => SelectStudent(s)" Class="student-item">
                         <MudAvatar Color="Color.Primary" Size="Size.Medium" Class="mud-avatar-text">
                             @($"{(string.IsNullOrEmpty(s.Cognome) ? "" : s.Cognome[0])}{(string.IsNullOrEmpty(s.Nome) ? "" : s.Nome[0])}".ToUpper())
                         </MudAvatar>
-
-
                         <MudText Typo="Typo.h5" Class="ml-3">
                             @($"{s.Cognome} {s.Nome}")
                         </MudText>
@@ -49,14 +48,11 @@
                         <MudAvatar Color="Color.Primary" Size="Size.Medium" Class="mud-avatar-text">
                             @($"{(string.IsNullOrEmpty(s.Cognome) ? "" : s.Cognome[0])}{(string.IsNullOrEmpty(s.Nome) ? "" : s.Nome[0])}".ToUpper())
                         </MudAvatar>
-
-
                         <MudText Typo="Typo.h5" Class="ml-3">
                             @($"{s.Cognome} {s.Nome}")
                         </MudText>
                     </MudListItem>
                 }
-                
             }
         </MudList>
     </MudPaper>
