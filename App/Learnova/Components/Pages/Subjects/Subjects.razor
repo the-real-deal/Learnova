@@ -34,7 +34,7 @@
                             <MudContainer  Class="p-5">
                                 <MudText Class="p-5">@m.Nome</MudText>
                             </MudContainer>
-                            @if (isAdmin)
+                            @if (User.CodiceRuolo == 1 || User.CodiceRuolo == 2)
                             {
                                 <MudButton OnClick="@(()=> AddGrade(@m))" Color="Color.Primary">Aggiungi Voto</MudButton>
                                 

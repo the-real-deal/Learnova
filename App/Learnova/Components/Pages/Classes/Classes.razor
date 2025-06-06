@@ -1,0 +1,36 @@
+@page "/Students"
+@using Learnova.Context
+@using Learnova.Entities
+@using Microsoft.EntityFrameworkCore
+@using Microsoft.EntityFrameworkCore.Query
+
+<MudText Class="ml-5" Typo="Typo.h2">Classi e studenti</MudText>
+<MudContainer Class="mt-2">
+    <MudSelect @bind-Value="selectedClass" T="Classi" Label="Seleziona classe">
+        @foreach (Classi classe in classi.OrderBy(x => x.Id))
+        {
+            <MudSelectItem T="Classi" Value="@classe">
+                @($"{classe.CodicePianoStudioNavigation.Anno} {classe.Sezione}")
+            </MudSelectItem>
+        }
+    </MudSelect>
+</MudContainer>
+
+@code
+{
+    public IQueryable<Studenti> studenti { get; set; }
+    public IQueryable<Classi> classi { get; set; }
+    public Classi selectedClass { get; set; }
+
+    protected override void OnInitialized()
+    {
+        MyDbContext dbContext = new MyDbContext();
+        classi = dbContext.Classis.Include(x=>x.CodicePianoStudioNavigation);
+        studenti = dbContext.Studentis
+            .Where(x => x.CodiceClasse == selectedClass.Id)
+            .Include(x => x.Nome)
+            .Include(x => x.Cognome)
+            .Include(x => x.Cf)
+            .Include(x => x.Votis);
+    }
+}
