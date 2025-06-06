@@ -23,7 +23,7 @@
         if (User.CodiceRuolo==4)
         {
             NavigationManager.NavigateTo($"/Subjects/{Db.Studentis.First(x => x.CodiceAccount==User.Username).Cf}");
-        }
+    }
         else
         {
             var tmp = Db.Genitoris.Include(x => x.CodiceStudentes).First(x => x.CodiceAccount == User.Username).CodiceStudentes.First().Cf;

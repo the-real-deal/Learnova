@@ -2,7 +2,9 @@
 @using Learnova.Context
 @using Learnova.Entities
 @using Microsoft.EntityFrameworkCore
-@using Microsoft.EntityFrameworkCore.Query
+@inject IDialogService DialogService
+@inject NavigationManager NavigationManager
+@inject Account User
 
 <MudText Class="ml-5" Typo="Typo.h2">Classi e studenti</MudText>
 <MudContainer Class="mt-2">
@@ -16,6 +18,50 @@
     </MudSelect>
 </MudContainer>
 
+@if (studenti?.Any() == true)
+{
+    <MudPaper Class="p-2" Elevation="2">
+        <MudList T="Studenti" Dense="true">
+            @foreach (var s in studenti.OrderBy(x => x.Cognome))
+            {
+                if (User.CodiceRuolo == 1 || User.CodiceRuolo == 2)
+                {
+                    <MudListItem T="Studenti" @onclick="() => SelectStudent(s)" Class="student-item">
+                        <MudAvatar Color="Color.Primary" Size="Size.Medium" Class="mud-avatar-text">
+                            @($"{(string.IsNullOrEmpty(s.Cognome) ? "" : s.Cognome[0])}{(string.IsNullOrEmpty(s.Nome) ? "" : s.Nome[0])}".ToUpper())
+                        </MudAvatar>
+
+
+                        <MudText Typo="Typo.h5" Class="ml-3">
+                            @($"{s.Cognome} {s.Nome}")
+                        </MudText>
+                    
+                        <MudSpacer />
+                        <MudIcon Icon="@Icons.Material.Filled.KeyboardArrowRight" Color="Color.Default" />
+                        <MudText Typo="Typo.subtitle2" Class="ml-3">
+                            Mostra Voti
+                        </MudText>
+                    </MudListItem>
+                }
+                else
+                {
+                    <MudListItem T="Studenti" Class="student-item">
+                        <MudAvatar Color="Color.Primary" Size="Size.Medium" Class="mud-avatar-text">
+                            @($"{(string.IsNullOrEmpty(s.Cognome) ? "" : s.Cognome[0])}{(string.IsNullOrEmpty(s.Nome) ? "" : s.Nome[0])}".ToUpper())
+                        </MudAvatar>
+
+
+                        <MudText Typo="Typo.h5" Class="ml-3">
+                            @($"{s.Cognome} {s.Nome}")
+                        </MudText>
+                    </MudListItem>
+                }
+                
+            }
+        </MudList>
+    </MudPaper>
+}
+
 @code
 {
     public IQueryable<Studenti> studenti { get; set; }
@@ -27,10 +73,12 @@
         MyDbContext dbContext = new MyDbContext();
         classi = dbContext.Classis.Include(x=>x.CodicePianoStudioNavigation);
         studenti = dbContext.Studentis
-            .Where(x => x.CodiceClasse == selectedClass.Id)
-            .Include(x => x.Nome)
-            .Include(x => x.Cognome)
-            .Include(x => x.Cf)
-            .Include(x => x.Votis);
+            .Where(x => x.CodiceClasse == selectedClass.Id);
+        selectedClass = dbContext.Classis.First(x=>x.Id==dbContext.Studentis.First(s => s.CodiceAccount==User.Username).CodiceClasse);
+    }
+
+    private async Task SelectStudent(Studenti student)
+    {
+            NavigationManager.NavigateTo($"/Subjects/{student.Cf}");
     }
 }
