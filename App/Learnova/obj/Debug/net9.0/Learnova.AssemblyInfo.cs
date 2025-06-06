@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Learnova")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+dbe7fc5f5425dc8d1a1a770747ee327d65a12065")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+106393b3e0d5616e1be4dc091b44fb62c57cc5fd")]
 [assembly: System.Reflection.AssemblyProductAttribute("Learnova")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Learnova")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

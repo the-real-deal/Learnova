@@ -10,6 +10,8 @@
     <MudPaper Class="d-flex flex-column px-5 py-5" Elevation="2" >
         <MudText Align="Align.Center" Inline="true" Typo="Typo.h5">
             <strong>MEDIA GENERALE</strong> 
+            <br/>
+            TODO: la media è sbagliata
         </MudText>
         <MudChart   ChartType="ChartType.Donut" InputData="@(new[] {  10 - @overallAverage.Value, overallAverage.Value })">
             <CustomGraphics  >
@@ -121,7 +123,7 @@
         {
             {x => x.grade, new Voti()
             {
-                CodiceMateriaNavigation = subject
+                CodiceMateria = subject.Id
             }}
         };
         var dialogReference = await DialogService.ShowAsync<GradeDialog>("Add",parameters);
@@ -129,14 +131,21 @@
         if (!result.Canceled)
         {
             Voti? added = result.Data as Voti;
-            Db.Votis.Add(added);
+            Db.Votis.Add(new Voti()
+            {
+                Cifra = added.Cifra,
+                Descrizione = added.Descrizione,
+                Data = added.Data,
+                CodiceMateria = added.CodiceMateria,
+                CodiceStudente = Student.Cf,
+            });
             Db.SaveChanges();
         }
         CalculateOverall();
         StateHasChanged();
     }
 
-    private void CalculateOverall() => overallAverage = Student.Votis.GroupBy(x => x.CodiceMateriaNavigation,x=> x.Cifra, (y,z) => z.Average() ).Average();
-    
-    
+    private void CalculateOverall() => overallAverage = Student.Votis.GroupBy(x => x.CodiceMateria).Average(x => x.Average(y => y.Cifra));
+
+
 }
