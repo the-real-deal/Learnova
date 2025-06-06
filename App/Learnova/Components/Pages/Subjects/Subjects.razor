@@ -1,11 +1,17 @@
-@page "/Subjects"
+@page "/Subjects/{CF}"
 @using Learnova.Commons
+@using Learnova.Context
+@using Learnova.Entities
+@using Microsoft.EntityFrameworkCore
 @inject IDialogService DialogService
+@inject Account User
 <MudText Typo="Typo.h3" Class="mb-4">Overview Materie</MudText>
 <MudContainer  MaxWidth="MaxWidth.Large" Class="m-4 d-flex">
     <MudPaper Class="d-flex flex-column px-5 py-5" Elevation="2" >
         <MudText Align="Align.Center" Inline="true" Typo="Typo.h5">
             <strong>MEDIA GENERALE</strong> 
+            <br/>
+            TODO: la media è sbagliata
         </MudText>
         <MudChart   ChartType="ChartType.Donut" InputData="@(new[] {  10 - @overallAverage.Value, overallAverage.Value })">
             <CustomGraphics  >
@@ -19,24 +25,24 @@
     <MudContainer Class="ml-2" MaxWidth="MaxWidth.Large">
         
         <MudExpansionPanels >
-            @foreach (string s in subjectsList.Keys)
+            @foreach (Materie m in Student.CodiceClasseNavigation.CodicePianoStudioNavigation.CodiceMateria)
             {
                 <MudExpansionPanel>
                     <TitleContent>
                         <MudContainer Class="d-flex">
-                            <MudAvatar Elevation="2" Size="Size.Large"  Class="d-flex" Color="Color.Primary">@s.Substring(0,3).ToUpper()</MudAvatar>
+                            <MudAvatar Elevation="2" Size="Size.Large"  Class="d-flex" Color="Color.Primary">@m.Nome.Substring(0,3).ToUpper()</MudAvatar>
                             <MudContainer  Class="p-5">
-                                <MudText Class="p-5">@s</MudText>
+                                <MudText Class="p-5">@m.Nome</MudText>
                             </MudContainer>
                             @if (isAdmin)
                             {
-                                <MudButton OnClick="@(()=> AddGrade(@s))" Color="Color.Primary">Aggiungi Voto</MudButton>
+                                <MudButton OnClick="@(()=> AddGrade(@m))" Color="Color.Primary">Aggiungi Voto</MudButton>
                                 
                             }
                         </MudContainer>
                     </TitleContent>
                     <ChildContent>
-                        <MudTable Items="subjectsList[s]">
+                        <MudTable Items="@(Student.Votis.Where(x => x.CodiceMateriaNavigation.Id==m.Id))">
                             <HeaderContent>
                                 <MudTh>Voto</MudTh>
                                 <MudTh>Descrizione</MudTh>
@@ -47,9 +53,9 @@
                             </HeaderContent>
                             <RowTemplate>
                                 <MudTd>
-                                    <MudAvatar Color="Color.Secondary">@context.value.ToString("N2")</MudAvatar>
+                                    <MudAvatar Color="Color.Secondary">@context.Cifra.ToString("N2")</MudAvatar>
                                 </MudTd>
-                                <MudTd>@context.description</MudTd>
+                                <MudTd>@context.Descrizione</MudTd>
                                 @if (isAdmin)
                                 {
                                     <MudTd>
@@ -69,9 +75,10 @@
 </MudContainer>
 
 @code {
-    
+    [Parameter] public string CF { get; set; }
+    public Studenti Student { get; set; }
     private ChartOptions options = new ChartOptions();
-    private Dictionary<string,List<Grade>> subjectsList = new Dictionary<string, List<Grade>>();
+    public MyDbContext Db { get; set; }
     private double? overallAverage;
     public bool isAdmin = true;
     private string[] subjects = { "Matematica", "Italiano", "Latino", "Informatica","Storia" };
@@ -80,30 +87,16 @@
     
     protected override void OnInitialized()
     {
-        
-        int count = 0;
-        foreach (string s in subjects)
-        {
-            count++;
-            List<Grade> tmp = new List<Grade>();
-            for (int i = 0; i < 5; i++)
-            {
-                tmp.Add(new Grade()
-                {
-                    id = count,
-                    description = $"Verifica {i+1}",
-                    value = System.Math.Round((Random.Shared.NextDouble()*6+4),2)
-                });
-            }
-            subjectsList.Add(s,tmp);
-        }
-
-        
-        
+        Db = new MyDbContext();
+        Student = Db.Studentis.Include(x => x.Votis)
+            .Include(x => x.CodiceClasseNavigation)
+            .Include(x => x.CodiceClasseNavigation.CodicePianoStudioNavigation)
+            .Include(x => x.CodiceClasseNavigation.CodicePianoStudioNavigation.CodiceMateria)
+            .First(x => x.Cf == CF);
         CalculateOverall();
     }
 
-    private async Task EditGrade(Grade g)
+    private async Task EditGrade(Voti g)
     {
         DialogParameters parameters = new DialogParameters<GradeDialog>
         {
@@ -113,39 +106,46 @@
         var result = await dialogReference.Result;
         if (!result.Canceled)
         {
-            Grade edited = result.Data as Grade;
-            
-            var entry =subjectsList.First(x => x.Value.Contains(g));
-            
-            subjectsList[entry.Key].Remove(g);
-            subjectsList[entry.Key].Add(edited);
+            Voti edited = result.Data as Voti;
+            g.Cifra = edited.Cifra;
+            g.Descrizione = edited.Descrizione;
+            g.Data = edited.Data;
+            Db.SaveChanges();
         }
         CalculateOverall();
         StateHasChanged();
         
     }
 
-    private async Task AddGrade(string subject)
+    private async Task AddGrade(Materie subject)
     {
         DialogParameters parameters = new DialogParameters<GradeDialog>
         {
-            {x => x.grade, new Grade()
+            {x => x.grade, new Voti()
             {
-                id = subjectsList.Values.SelectMany(x=>x).Select(x => x.id).Max() + 1
+                CodiceMateria = subject.Id
             }}
         };
         var dialogReference = await DialogService.ShowAsync<GradeDialog>("Add",parameters);
         var result = await dialogReference.Result;
         if (!result.Canceled)
         {
-            Grade? added = result.Data as Grade;
-            subjectsList[subject].Add(added);
+            Voti? added = result.Data as Voti;
+            Db.Votis.Add(new Voti()
+            {
+                Cifra = added.Cifra,
+                Descrizione = added.Descrizione,
+                Data = added.Data,
+                CodiceMateria = added.CodiceMateria,
+                CodiceStudente = Student.Cf,
+            });
+            Db.SaveChanges();
         }
         CalculateOverall();
         StateHasChanged();
     }
 
-    private void CalculateOverall() => overallAverage = subjectsList.Values.SelectMany(x => x).Distinct().Select(x => x.value).Average();
-    
-    
+    private void CalculateOverall() => overallAverage = Student.Votis.GroupBy(x => x.CodiceMateria).Average(x => x.Average(y => y.Cifra));
+
+
 }

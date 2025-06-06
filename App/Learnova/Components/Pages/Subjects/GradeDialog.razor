@@ -1,11 +1,12 @@
 @using Learnova.Commons
+@using Learnova.Entities
 <MudDialog>
     <TitleContent>
         <MudText Typo="Typo.h5">Modifica Voto</MudText>
     </TitleContent>
     <DialogContent>
-        <MudTextField @bind-Value="@grade.value" Format="F2" T="double" Label="Voto"></MudTextField>
-        <MudTextField @bind-Value="@grade.description" AutoGrow="true" InputType="InputType.Text" T="string" Label="Descrizione"></MudTextField>
+        <MudTextField @bind-Value="@grade.Cifra" Format="F2" T="double" Label="Voto"></MudTextField>
+        <MudTextField @bind-Value="@grade.Descrizione" AutoGrow="true" InputType="InputType.Text" T="string" Label="Descrizione"></MudTextField>
     </DialogContent>
     <DialogActions>
         <MudButton ButtonType="ButtonType.Button" Variant="Variant.Text" Color="Color.Primary" OnClick="@MudDialog.Cancel">Annulla</MudButton>
@@ -15,7 +16,7 @@
 
 @code {
     [Parameter] 
-    public Grade grade { get; set; }
+    public Voti grade { get; set; }
     [CascadingParameter]
     IMudDialogInstance MudDialog { get; set; }
 

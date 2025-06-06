@@ -1,8 +1,32 @@
-﻿
+﻿@using Learnova.Context
+@using Learnova.Entities
+@using Microsoft.EntityFrameworkCore
+@inject Account User
+@inject NavigationManager NavigationManager
 <MudNavMenu>
     <MudNavLink Href="/Dashboard"  Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.Dashboard">Dashboard</MudNavLink>
     <MudNavLink Href="/Calendar" Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.CalendarToday">Calendario</MudNavLink>
     <MudNavLink Href="/ProfessorsTimesheet" Icon="@Icons.Material.Filled.CalendarViewWeek" Match="NavLinkMatch.All">Orario Professori</MudNavLink>
-    <MudNavLink Href="/Subjects" Icon="@Icons.Material.Filled.School" Match="NavLinkMatch.All">Materie</MudNavLink></MudNavMenu>
+    @if (User.CodiceRuolo==4 || User.CodiceRuolo==3)
+    {
+        <MudNavLink OnClick="GetSubjects"  Icon="@Icons.Material.Filled.School" Match="NavLinkMatch.All">Materie</MudNavLink>
+    }
+    </MudNavMenu>
 
 
+@code
+{
+    private MyDbContext Db = new MyDbContext();
+    public void GetSubjects()
+    {
+        if (User.CodiceRuolo==4)
+        {
+            NavigationManager.NavigateTo($"/Subjects/{Db.Studentis.First(x => x.CodiceAccount==User.Username).Cf}");
+        }
+        else
+        {
+            var tmp = Db.Genitoris.Include(x => x.CodiceStudentes).First(x => x.CodiceAccount == User.Username).CodiceStudentes.First().Cf;
+            NavigationManager.NavigateTo($"/Subjects/{tmp}");
+        }
+    }
+}
