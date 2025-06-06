@@ -34,7 +34,7 @@
                             <MudContainer  Class="p-5">
                                 <MudText Class="p-5">@m.Nome</MudText>
                             </MudContainer>
-                            @if (isAdmin)
+                            @if (User.CodiceRuolo == 1 || User.CodiceRuolo == 2)
                             {
                                 <MudButton OnClick="@(()=> AddGrade(@m))" Color="Color.Primary">Aggiungi Voto</MudButton>
                                 
@@ -46,7 +46,7 @@
                             <HeaderContent>
                                 <MudTh>Voto</MudTh>
                                 <MudTh>Descrizione</MudTh>
-                                @if (isAdmin)
+                                @if (User.CodiceRuolo == 1 || User.CodiceRuolo == 2)
                                 {
                                     <MudTh></MudTh>
                                 }
@@ -56,7 +56,7 @@
                                     <MudAvatar Color="Color.Secondary">@context.Cifra.ToString("N2")</MudAvatar>
                                 </MudTd>
                                 <MudTd>@context.Descrizione</MudTd>
-                                @if (isAdmin)
+                                @if (User.CodiceRuolo == 1 || User.CodiceRuolo == 2)
                                 {
                                     <MudTd>
                                         <MudButton OnClick="@(() => EditGrade(@context))" Color="Color.Tertiary">Modifica</MudButton>
@@ -80,7 +80,6 @@
     private ChartOptions options = new ChartOptions();
     public MyDbContext Db { get; set; }
     private double? overallAverage;
-    public bool isAdmin = true;
     private string[] subjects = { "Matematica", "Italiano", "Latino", "Informatica","Storia" };
 
 
