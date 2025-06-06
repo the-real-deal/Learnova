@@ -74,7 +74,14 @@
         classi = dbContext.Classis.Include(x=>x.CodicePianoStudioNavigation);
         studenti = dbContext.Studentis
             .Where(x => x.CodiceClasse == selectedClass.Id);
-        selectedClass = dbContext.Classis.First(x=>x.Id==dbContext.Studentis.First(s => s.CodiceAccount==User.Username).CodiceClasse);
+        if (User.CodiceRuolo == 3 || User.CodiceRuolo == 4)
+        {
+            selectedClass = dbContext.Classis.First(x=>x.Id==dbContext.Studentis.First(s => s.CodiceAccount==User.Username).CodiceClasse);
+        }
+        else
+        {
+            selectedClass = classi.First();
+        }
     }
 
     private async Task SelectStudent(Studenti student)
