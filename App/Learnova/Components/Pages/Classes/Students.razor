@@ -1,4 +1,4 @@
-@page "/Students"
+@page "/Students/{Id}"
 @using Learnova.Context
 @using Learnova.Entities
 @using Microsoft.EntityFrameworkCore
@@ -7,16 +7,6 @@
 @inject Account User
 
 <MudText Class="ml-5" Typo="Typo.h2">Classi e studenti</MudText>
-<MudContainer Class="mt-2">
-    <MudSelect @bind-Value="selectedClass" T="Classi" Label="Seleziona classe">
-        @foreach (Classi classe in classi.OrderBy(x => x.Id))
-        {
-            <MudSelectItem T="Classi" Value="@classe">
-                @($"{classe.CodicePianoStudioNavigation.Anno} {classe.Sezione}")
-            </MudSelectItem>
-        }
-    </MudSelect>
-</MudContainer>
 
 @if (studenti?.Any() == true)
 {
@@ -60,24 +50,14 @@
 
 @code
 {
-    public IQueryable<Studenti> studenti { get; set; }
-    public IQueryable<Classi> classi { get; set; }
+    public IEnumerable<Studenti> studenti { get; set; }
     public Classi selectedClass { get; set; }
-
+    [Parameter]
+    public int Id { get; set; }
     protected override void OnInitialized()
     {
         MyDbContext dbContext = new MyDbContext();
-        classi = dbContext.Classis.Include(x=>x.CodicePianoStudioNavigation);
-        studenti = dbContext.Studentis
-            .Where(x => x.CodiceClasse == selectedClass.Id);
-        if (User.CodiceRuolo == 3 || User.CodiceRuolo == 4)
-        {
-            selectedClass = dbContext.Classis.First(x=>x.Id==dbContext.Studentis.First(s => s.CodiceAccount==User.Username).CodiceClasse);
-        }
-        else
-        {
-            selectedClass = classi.First();
-        }
+        studenti = dbContext.Classis.Include(x => x.Studentis).First(x => x.Id == Id).Studentis;
     }
 
     private async Task SelectStudent(Studenti student)
