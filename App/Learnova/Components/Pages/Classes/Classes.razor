@@ -14,7 +14,7 @@
         <MudList T="Classi">
             @foreach (Classi c in classes)
             {
-                <MudListItem OnClick="@(() =>NavigationManager.NavigateTo($"/Class/{c.Id}"))" Class="d-flex" T="Classi">
+                <MudListItem OnClick="@(() =>NavigationManager.NavigateTo($"/Students/{c.Id}"))" Class="d-flex" T="Classi">
                     <MudGrid>
                         <MudItem xs="3">
                             <MudAvatar Class="d-inline" Elevation="2" Size="Size.Large" Color="Color.Primary">@(c.CodicePianoStudioNavigation.Anno + c.Sezione)</MudAvatar>

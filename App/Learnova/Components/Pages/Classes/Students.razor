@@ -1,4 +1,4 @@
-@page "/Students/{Id}"
+@page "/Students/{Id:int}"
 @using Learnova.Context
 @using Learnova.Entities
 @using Microsoft.EntityFrameworkCore
@@ -10,7 +10,7 @@
 
 @if (studenti?.Any() == true)
 {
-    <MudPaper Class="p-2" Elevation="2">
+    <MudPaper Class="p-2 mx-18" Elevation="2">
         <MudList T="Studenti" Dense="true">
             @foreach (var s in studenti.OrderBy(x => x.Cognome))
             {
@@ -18,18 +18,30 @@
                 if (User.CodiceRuolo == 1 || User.CodiceRuolo == 2)
                 {
                     <MudListItem T="Studenti" @onclick="() => SelectStudent(s)" Class="student-item">
-                        <MudAvatar Color="Color.Primary" Size="Size.Medium" Class="mud-avatar-text">
-                            @($"{(string.IsNullOrEmpty(s.Cognome) ? "" : s.Cognome[0])}{(string.IsNullOrEmpty(s.Nome) ? "" : s.Nome[0])}".ToUpper())
-                        </MudAvatar>
-                        <MudText Typo="Typo.h5" Class="ml-3">
-                            @($"{s.Cognome} {s.Nome}")
-                        </MudText>
-                    
-                        <MudSpacer />
-                        <MudIcon Icon="@Icons.Material.Filled.KeyboardArrowRight" Color="Color.Default" />
-                        <MudText Typo="Typo.subtitle2" Class="ml-3">
-                            Mostra Voti
-                        </MudText>
+                        <MudGrid>
+                            <MudItem xs="11"> 
+                                <MudAvatar Color="Color.Primary" Size="Size.Large" Class="mud-avatar-text">
+                                    @($"{(string.IsNullOrEmpty(s.Cognome) ? "" : s.Cognome[0])}{(string.IsNullOrEmpty(s.Nome) ? "" : s.Nome[0])}".ToUpper())
+                                </MudAvatar>
+                                <MudText Typo="Typo.h5" Class="ml-3 d-inline">
+                                    @($"{s.Cognome} {s.Nome}")
+                                </MudText>
+                            </MudItem>
+                            
+                            
+                            <MudItem xs="1">
+                                <MudText Typo="Typo.subtitle2"  Class="ml-3">
+                                    Mostra Voti
+                                </MudText>
+                                <MudIcon Class="object-right" Icon="@Icons.Material.Filled.KeyboardArrowRight" Color="Color.Default"/>
+                            </MudItem>
+                        </MudGrid>
+                        
+                        
+
+                        
+                        
+                        
                     </MudListItem>
                 }
                 else
