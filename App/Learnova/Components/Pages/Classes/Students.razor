@@ -15,7 +15,7 @@
             @foreach (var s in studenti.OrderBy(x => x.Cognome))
             {
                 //aaaaaNot following the DRY rule...
-                if (User.CodiceRuolo == 1 || User.CodiceRuolo == 2)
+                if (User.CodiceRuolo <=2)
                 {
                     <MudListItem T="Studenti" @onclick="() => SelectStudent(s)" Class="student-item">
                         <MudGrid>
@@ -27,8 +27,6 @@
                                     @($"{s.Cognome} {s.Nome}")
                                 </MudText>
                             </MudItem>
-                            
-                            
                             <MudItem xs="1">
                                 <MudText Typo="Typo.subtitle2"  Class="ml-3">
                                     Mostra Voti
@@ -36,25 +34,9 @@
                                 <MudIcon Class="object-right" Icon="@Icons.Material.Filled.KeyboardArrowRight" Color="Color.Default"/>
                             </MudItem>
                         </MudGrid>
-                        
-                        
-
-                        
-                        
-                        
                     </MudListItem>
                 }
-                else
-                {
-                    <MudListItem T="Studenti" Class="student-item">
-                        <MudAvatar Color="Color.Primary" Size="Size.Medium" Class="mud-avatar-text">
-                            @($"{(string.IsNullOrEmpty(s.Cognome) ? "" : s.Cognome[0])}{(string.IsNullOrEmpty(s.Nome) ? "" : s.Nome[0])}".ToUpper())
-                        </MudAvatar>
-                        <MudText Typo="Typo.h5" Class="ml-3">
-                            @($"{s.Cognome} {s.Nome}")
-                        </MudText>
-                    </MudListItem>
-                }
+                
             }
         </MudList>
     </MudPaper>
@@ -63,7 +45,6 @@
 @code
 {
     public IEnumerable<Studenti> studenti { get; set; }
-    public Classi selectedClass { get; set; }
     [Parameter]
     public int Id { get; set; }
     protected override void OnInitialized()
