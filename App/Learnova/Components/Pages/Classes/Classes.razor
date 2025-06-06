@@ -1,0 +1,62 @@
+@page "/Classes"
+@using Learnova.Context
+@using Learnova.Entities
+@using Microsoft.EntityFrameworkCore
+@inject Account User
+@inject NavigationManager NavigationManager
+
+<MudContainer>
+    <MudPaper Class="my-2 py-3 px-3">
+        <MudText Typo="Typo.h3">Le @(User.CodiceRuolo==2? "tue":"") classi</MudText>
+    </MudPaper>
+    <MudDivider></MudDivider>
+    <MudPaper>
+        <MudList T="Classi">
+            @foreach (Classi c in classes)
+            {
+                <MudListItem OnClick="@(() =>NavigationManager.NavigateTo($"/Class/{c.Id}"))" Class="d-flex" T="Classi">
+                    <MudGrid>
+                        <MudItem xs="3">
+                            <MudAvatar Class="d-inline" Elevation="2" Size="Size.Large" Color="Color.Primary">@(c.CodicePianoStudioNavigation.Anno + c.Sezione)</MudAvatar>
+                            <MudText  Class="d-inline  pl-4" Typo="Typo.h5">@c.CodicePianoStudioNavigation.CodiceIndirizzoNavigation.Nome</MudText>
+                        </MudItem>
+                        <MudItem xs="8">
+                            <MudText Typo="Typo.h6">Studenti @c.Studentis.Count:</MudText>
+                        </MudItem>
+                        <MudItem Class="object-right" xs="1">
+                            <MudIcon  Icon="@Icons.Material.Filled.ArrowForwardIos"></MudIcon>
+                        </MudItem>
+                    </MudGrid>
+                    
+                </MudListItem>
+            }
+        </MudList>
+    </MudPaper>
+
+</MudContainer>
+@code {
+    public MyDbContext Db { get; set; }
+    public List<Classi> classes { get; set; }
+
+    protected override void OnInitialized()
+    {
+        Db = new MyDbContext();
+        if (User.CodiceRuolo==2)
+        {
+            classes = Db.Insegnamentos.Include(x => x.CodiceClasseNavigation)
+                .Include(x => x.CodiceClasseNavigation.Studentis)
+                .Include(x => x.CodiceClasseNavigation.CodicePianoStudioNavigation.CodiceIndirizzoNavigation)
+                .Include(x => x.CodiceClasseNavigation.CodicePianoStudioNavigation)
+                .Include(x => x.CodiceProfessoreNavigation)
+                .Where(x => x.CodiceProfessoreNavigation.CodiceAccount == User.Username).Select(x => x.CodiceClasseNavigation).ToList();
+        }
+        else
+        {
+            classes = Db.Classis.Include(x => x.CodicePianoStudioNavigation)
+                .Include(x => x.Studentis)
+                .Include(x => x.CodicePianoStudioNavigation.CodiceIndirizzoNavigation).ToList();
+        }
+        Db.Dispose();
+    }   
+
+}

@@ -26,7 +26,7 @@
                         <MudTextField @bind-Value="@Password" Required="true" T="string" Label="Password" InputType="InputType.Password"></MudTextField>
                     </MudCardContent>
                     <MudCardActions>
-                        <MudButton OnClick="Test" FullWidth=true Variant="Variant.Outlined" EndIcon="@Icons.Material.Rounded.Login" Color="Color.Secondary" Class="btn-check" >Login</MudButton>
+                        <MudButton  OnClick="Test" FullWidth=true Variant="Variant.Outlined" EndIcon="@Icons.Material.Rounded.Login" Color="Color.Secondary" Class="btn-check" >Login</MudButton>
                     </MudCardActions>
                 </MudForm>
             </MudCard>
@@ -46,7 +46,7 @@
     
     public MudForm? form;
     
-    private void Test()
+    private Task Test()
     {
         
         form.Validate();
@@ -60,6 +60,7 @@
         }
 
         valid = false;
+        return Task.CompletedTask;
     }
 
     public void AccountInit(Account tmp)

@@ -6,10 +6,12 @@
 <PageTitle>Dashboard</PageTitle>
 <MudPaper Class="mx-3 my-4 py-2 px-2">
     <MudText Typo="Typo.h3">@($"Benvenuto {Welcome()}")</MudText>
+    <MudDivider></MudDivider>
     @if (User.CodiceRuolo == 3)
     {
         <MudText Typo="Typo.subtitle1">@($"Genitore di {Db.Genitoris.Include(x => x.CodiceStudentes).First().CodiceStudentes.Select(x =>$"{x.Nome} {x.Cognome}" ).First()}")</MudText>
     }
+    
     
 </MudPaper>
 @code
@@ -22,9 +24,10 @@
             .Union(Db.Genitoris.Select(x =>new {x.Cf,x.Nome,x.Cognome,x.CodiceAccount}))
             .Union(Db.Professoris.Select(x =>new {x.Cf,x.Nome,x.Cognome,x.CodiceAccount}))
             .First(x => x.CodiceAccount==User.Username);
-        
         return $"{tmp.Nome} {tmp.Cognome}";
     }
+
+   
 
 }
 

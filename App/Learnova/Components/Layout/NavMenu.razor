@@ -7,10 +7,15 @@
     <MudNavLink Href="/Dashboard"  Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.Dashboard">Dashboard</MudNavLink>
     <MudNavLink Href="/Calendar" Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.CalendarToday">Calendario</MudNavLink>
     <MudNavLink Href="/ProfessorsTimesheet" Icon="@Icons.Material.Filled.CalendarViewWeek" Match="NavLinkMatch.All">Orario Professori</MudNavLink>
-    @if (User.CodiceRuolo==4 || User.CodiceRuolo==3)
+    @if (User.CodiceRuolo>=3)
     {
         <MudNavLink OnClick="GetSubjects"  Icon="@Icons.Material.Filled.School" Match="NavLinkMatch.All">Materie</MudNavLink>
     }
+    else if(User.CodiceRuolo<=2)
+    {
+        <MudNavLink Href="/Classes" Icon="@Icons.Material.Filled.Assignment" Match="NavLinkMatch.All">Classi</MudNavLink>
+    }
+    
     </MudNavMenu>
 
 

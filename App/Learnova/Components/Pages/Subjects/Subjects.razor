@@ -110,7 +110,7 @@
             g.Cifra = edited.Cifra;
             g.Descrizione = edited.Descrizione;
             g.Data = edited.Data;
-            Db.SaveChanges();
+            await Db.SaveChangesAsync();
         }
         CalculateOverall();
         StateHasChanged();
@@ -139,7 +139,7 @@
                 CodiceMateria = added.CodiceMateria,
                 CodiceStudente = Student.Cf,
             });
-            Db.SaveChanges();
+            await Db.SaveChangesAsync();
         }
         CalculateOverall();
         StateHasChanged();
