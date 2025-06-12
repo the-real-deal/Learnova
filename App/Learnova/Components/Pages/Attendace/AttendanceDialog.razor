@@ -1,0 +1,38 @@
+@using Learnova.Entities
+<MudDialog>
+    <TitleContent>
+        <MudText Typo="Typo.h5">Nuova Assenza @date.ToString()</MudText>
+    </TitleContent>
+    <DialogContent>
+        <MudDatePicker @bind-Date="date" Label="Assente il"></MudDatePicker>
+        <MudTextField @bind-Value="assenza.Descrizione" Label="Descrizione" T="string"></MudTextField>
+    </DialogContent>
+    <DialogActions>
+        <MudButton OnClick="Save" Color="Color.Primary">Aggiungi</MudButton>
+        <MudButton OnClick="MudDialog.Cancel" Color="Color.Dark">Canella</MudButton>
+    </DialogActions>
+</MudDialog>
+@code {
+    
+    [CascadingParameter]
+    IMudDialogInstance MudDialog { get; set; }
+
+    public DateTime? date { get; set; }
+    public Assenze assenza { get; set; }
+    [Parameter] public string CF { get; set; }
+    protected override void OnInitialized()
+    {
+        assenza = new Assenze()
+        {
+            CodiceStudente = CF,
+        };
+    }
+
+    private void Save()
+    {
+        assenza.Data = date.Value;
+        MudDialog.Close(assenza);
+    }
+    
+
+}

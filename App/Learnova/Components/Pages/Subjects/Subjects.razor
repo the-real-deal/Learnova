@@ -5,6 +5,7 @@
 @using Microsoft.EntityFrameworkCore
 @inject IDialogService DialogService
 @inject Account User
+
 <MudText Typo="Typo.h3" Class="mb-4">Overview Materie</MudText>
 <MudContainer  MaxWidth="MaxWidth.Large" Class="m-4 d-flex">
     <MudPaper Class="d-flex flex-column px-5 py-5" Elevation="2" >
@@ -60,6 +61,7 @@
                                 {
                                     <MudTd>
                                         <MudButton OnClick="@(() => EditGrade(@context))" Color="Color.Tertiary">Modifica</MudButton>
+                                        <MudButton OnClick="@(() =>Delete(@context))" Color="Color.Error">Elimina</MudButton>
                                     </MudTd>
                                 }
                             </RowTemplate>
@@ -126,7 +128,8 @@
         {
             {x => x.grade, new Voti()
             {
-                CodiceMateria = subject.Id
+                CodiceMateria = subject.Id,
+                CodiceStudente = Student.Cf
             }}
         };
         var dialogReference = await DialogService.ShowAsync<GradeDialog>("Add",parameters);
@@ -134,7 +137,7 @@
         if (!result.Canceled)
         {
             Voti? added = result.Data as Voti;
-            Db.Votis.Add(new Voti()
+            await Db.Votis.AddAsync(new Voti()
             {
                 Cifra = added.Cifra,
                 Descrizione = added.Descrizione,
@@ -148,6 +151,12 @@
         StateHasChanged();
     }
 
+    private void Delete(Voti grade)
+    {
+        Db.Votis.Remove(grade);
+        Db.SaveChanges();
+        CalculateOverall();
+    }
     private void CalculateOverall() => overallAverage = Student.Votis.GroupBy(x => x.CodiceMateria).Average(x => x.Average(y => y.Cifra));
 
 

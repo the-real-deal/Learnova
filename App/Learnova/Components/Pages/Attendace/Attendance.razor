@@ -1,0 +1,89 @@
+@page "/Attendance/{CF}"
+@using Learnova.Context
+@using Learnova.Entities
+@inject Account User
+@inject IDialogService DialogService
+<MudText Typo="Typo.h3">Assenze</MudText>
+<MudTable Elevation="2" Items="assenze"  >
+    <HeaderContent>
+        <MudTh>Data</MudTh>
+        <MudTh>Descrizione</MudTh>
+        <MudTh>Giustifica</MudTh>
+        @if (User.CodiceRuolo <= 3)
+        {
+            <MudTh>
+                <MudButton OnClick="@(()=>Absent(CF) )" Color="Color.Tertiary">Aggiungi Assenza</MudButton>
+            </MudTh>
+        }
+    </HeaderContent>
+    <RowTemplate>
+        <MudTd>@context.Data.ToShortDateString()</MudTd>
+        <MudTd>@context.Descrizione</MudTd>
+        @if (@context.Giustificata)
+        {
+            <MudTd>
+                <MudIcon Icon="@Icons.Material.Filled.Check" Color="Color.Success"></MudIcon>
+            </MudTd>
+            
+        }
+        else
+        {
+            <MudTd>
+                <MudIcon Icon="@Icons.Material.Filled.Close" Color="Color.Error"></MudIcon>
+            </MudTd>
+            
+        }
+        @if (User.CodiceRuolo <= 3 && @context.Giustificata==false)
+        {
+            <MudTd>
+                <MudButton Color="Color.Secondary" OnClick="@(() =>Giustifica(@context) )">Giustifica</MudButton>
+            </MudTd>
+        }
+    </RowTemplate>
+
+</MudTable>
+
+@code {
+    public MyDbContext Db { get; set; }
+    public IQueryable<Assenze> assenze { get; set; }
+    [Parameter]
+    public string CF { get; set; }
+    protected override void OnInitialized()
+    {
+        Db = new MyDbContext();
+        
+        assenze = Db.Assenzes.Where(x => x.CodiceStudente==CF);
+        
+    }
+
+    private void Giustifica(Assenze a)
+    {
+        a.Giustificata = true;
+        Db.SaveChanges();
+    }
+
+    private async Task Absent(string cf)
+    {
+        DialogParameters parameters = new DialogParameters<AttendanceDialog>
+        {
+            {x => x.CF,cf} 
+        };
+        var dialogReference = await DialogService.ShowAsync<AttendanceDialog>("Add",parameters);
+        var result = await dialogReference.Result;
+        if (!result.Canceled)
+        {
+            Assenze? added = result.Data as Assenze;
+            await Db.Assenzes.AddAsync(new Assenze()
+            {
+                CodiceStudente = added.CodiceStudente,
+                Data = added.Data,
+                Descrizione = added.Descrizione,
+                Giustificata = false
+            });
+            await Db.SaveChangesAsync();
+            
+        }
+        StateHasChanged();
+    }
+
+}

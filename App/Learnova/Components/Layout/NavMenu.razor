@@ -9,7 +9,8 @@
     <MudNavLink Href="/ProfessorsTimesheet" Icon="@Icons.Material.Filled.CalendarViewWeek" Match="NavLinkMatch.All">Orario Professori</MudNavLink>
     @if (User.CodiceRuolo>=3)
     {
-        <MudNavLink OnClick="GetSubjects"  Icon="@Icons.Material.Filled.School" Match="NavLinkMatch.All">Materie</MudNavLink>
+        <MudNavLink OnClick="@(() => StudentNavigate("Subjects"))"  Icon="@Icons.Material.Filled.School" Match="NavLinkMatch.All">Materie</MudNavLink>
+        <MudNavLink OnClick="@(() => StudentNavigate("Attendance"))" Icon="@Icons.Material.Filled.PersonOutline">Assenze</MudNavLink>
     }
     else if(User.CodiceRuolo<=2)
     {
@@ -34,4 +35,18 @@
             NavigationManager.NavigateTo($"/Subjects/{tmp}");
         }
     }
+
+    private void StudentNavigate(string page)
+    {
+        if (User.CodiceRuolo==4)
+        {
+            NavigationManager.NavigateTo($"/{page}/{Db.Studentis.First(x => x.CodiceAccount==User.Username).Cf}");
+        }
+        else
+        {
+            var tmp = Db.Genitoris.Include(x => x.CodiceStudentes).First(x => x.CodiceAccount == User.Username).CodiceStudentes.First().Cf;
+            NavigationManager.NavigateTo($"/{page}/{tmp}");
+        }
+    }
+    
 }
