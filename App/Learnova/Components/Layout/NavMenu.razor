@@ -10,7 +10,8 @@
     @if (User.CodiceRuolo>=3)
     {
         <MudNavLink OnClick="@(() => StudentNavigate("Subjects"))"  Icon="@Icons.Material.Filled.School" Match="NavLinkMatch.All">Materie</MudNavLink>
-        <MudNavLink OnClick="@(() => StudentNavigate("Attendance"))" Icon="@Icons.Material.Filled.PersonOutline">Assenze</MudNavLink>
+        <MudNavLink OnClick="@(() => StudentNavigate("Attendance"))" Icon="@Icons.Material.Filled.CheckBox">Assenze</MudNavLink>
+        <MudNavLink OnClick="@(() => StudentNavigate("Notes"))" Icon="@Icons.Material.Filled.Warning">Note Disciplinari</MudNavLink>
     }
     else if(User.CodiceRuolo<=2)
     {

@@ -1,0 +1,75 @@
+@page "/Notes/{CF}"
+@using Learnova.Context
+@using Learnova.Entities
+@inject Account User
+@inject IDialogService DialogService
+<MudText Typo="Typo.h3">Note disciplinari</MudText>
+<MudTable Elevation="2" Items="note"  >
+    <HeaderContent>
+        <MudTh>Data</MudTh>
+        <MudTh>Descrizione</MudTh>
+        @if (User.CodiceRuolo <= 3)
+        {
+            <MudTh>
+                <MudButton OnClick="@(()=>AssignNota(CF) )" Color="Color.Tertiary">Aggiungi Nota Disciplinare</MudButton>
+            </MudTh>
+        }
+    </HeaderContent>
+    <RowTemplate>
+        <MudTd>@context.Data.ToShortDateString()</MudTd>
+        <MudTd>@context.Descrizione</MudTd>
+
+        @if (User.CodiceRuolo <= 3)
+        {
+            <MudTd>
+                <MudButton Color="Color.Secondary" OnClick="@(() =>Delete(@context) )">Delete</MudButton>
+            </MudTd>
+        }
+    </RowTemplate>
+
+</MudTable>
+
+@code {
+    public MyDbContext Db { get; set; }
+    public IQueryable<Note> note { get; set; }
+    [Parameter]
+    public string CF { get; set; }
+    protected override void OnInitialized()
+    {
+        Db = new MyDbContext();
+
+        note = Db.Notes.Where(x => x.CodiceStudente==CF);
+
+    }
+    
+    private void Delete(Note a)
+    {
+        Db.Notes.Remove(a);
+        Db.SaveChanges();
+    }
+
+    private async Task AssignNota(string cf)
+    {
+        DialogParameters parameters = new DialogParameters<NoteDialog>
+        {
+            {x => x.CF,cf}
+        };
+        var dialogReference = await DialogService.ShowAsync<NoteDialog>("Add",parameters);
+        var result = await dialogReference.Result;
+        if (!result.Canceled)
+        {
+            Note? added = result.Data as Note;
+            await Db.Notes.AddAsync(new Note()
+            {
+                CodiceStudente = added.CodiceStudente,
+                Data = added.Data,
+                Descrizione = added.Descrizione,
+                CodiceProfessore = added.CodiceProfessore
+            });
+            await Db.SaveChangesAsync();
+
+        }
+        StateHasChanged();
+    }
+
+}

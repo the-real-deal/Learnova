@@ -1,38 +1,42 @@
 @using Learnova.Entities
+@using Learnova.Context
 <MudDialog>
     <TitleContent>
-        <MudText Typo="Typo.h5">Nuova Assenza @date.ToString()</MudText>
+        <MudText Typo="Typo.h5">Nuova Nota Disciplinare @date.ToString()</MudText>
     </TitleContent>
     <DialogContent>
-        <MudDatePicker @bind-Date="date" Label="Assente il"></MudDatePicker>
-        <MudTextField @bind-Value="assenza.Descrizione" Label="Descrizione" T="string"></MudTextField>
+        <MudDatePicker @bind-Date="date" Label="Nota data il"></MudDatePicker>
+        <MudTextField @bind-Value="nota.Descrizione" Label="Descrizione" T="string"></MudTextField>
     </DialogContent>
     <DialogActions>
         <MudButton OnClick="Save" Color="Color.Primary">Aggiungi</MudButton>
         <MudButton OnClick="MudDialog.Cancel" Color="Color.Dark">Cancella</MudButton>
     </DialogActions>
 </MudDialog>
+@inject Account User
 @code {
-    
     [CascadingParameter]
     IMudDialogInstance MudDialog { get; set; }
+    
+    public MyDbContext Db = new MyDbContext();
 
     public DateTime? date { get; set; }
-    public Assenze assenza { get; set; }
+    public Note nota { get; set; }
     [Parameter] public string CF { get; set; }
     protected override void OnInitialized()
     {
-        assenza = new Assenze()
+        nota = new Note()
         {
             CodiceStudente = CF,
+            CodiceProfessore = Db.Professoris.First(x => x.CodiceAccount==User.Username).Cf
         };
     }
 
     private void Save()
     {
-        assenza.Data = date.Value;
-        MudDialog.Close(assenza);
+        nota.Data = date.Value;
+        MudDialog.Close(nota);
     }
-    
+        
 
 }

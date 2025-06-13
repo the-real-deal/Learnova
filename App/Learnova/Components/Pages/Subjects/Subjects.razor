@@ -157,7 +157,11 @@
         Db.SaveChanges();
         CalculateOverall();
     }
-    private void CalculateOverall() => overallAverage = Student.Votis.GroupBy(x => x.CodiceMateria).Average(x => x.Average(y => y.Cifra));
+
+    private void CalculateOverall()
+    {
+        overallAverage = Student.Votis.Count==0? 0 :Student.Votis.Average(x => x.Cifra);
+    }
 
 
 }
