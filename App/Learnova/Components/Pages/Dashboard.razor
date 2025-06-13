@@ -11,9 +11,19 @@
     {
         <MudText Typo="Typo.subtitle1">@($"Genitore di {Db.Genitoris.Include(x => x.CodiceStudentes).First().CodiceStudentes.Select(x =>$"{x.Nome} {x.Cognome}" ).First()}")</MudText>
     }
-    
+   
     
 </MudPaper>
+
+@if (User.CodiceRuolo == 1)
+{
+    <MudPaper Class="px-4 py-4 my-4" Elevation="2">
+        <MudText Typo="Typo.h5">Statistiche</MudText>
+        <br/>
+        <MudText Color="Color.Secondary">Media Assenze Totali: @(AvgNonAttendance())</MudText>
+        <MudText Color="Color.Tertiary">Media Voti Globale: @(AvgGrades().ToString("F2"))</MudText>
+    </MudPaper>
+}
 @code
 {
     public MyDbContext Db = new MyDbContext();
@@ -27,7 +37,15 @@
         return $"{tmp.Nome} {tmp.Cognome}";
     }
 
-   
+    private double AvgNonAttendance()
+    {
+        return Db.Studentis.Include(x => x.Assenzes).Select(x => x.Assenzes.Count).Average();
+    }
+
+    private double AvgGrades()
+    {
+        return Db.Studentis.Include(x => x.Votis).Select(x => x.Votis.Average(x => x.Cifra)).Average();
+    }
 
 }
 
