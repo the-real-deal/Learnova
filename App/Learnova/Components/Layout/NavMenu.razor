@@ -7,12 +7,17 @@
     <MudNavLink Href="/Dashboard"  Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.Dashboard">Dashboard</MudNavLink>
     <MudNavLink Href="/Calendar" Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.CalendarToday">Calendario</MudNavLink>
     <MudNavLink Href="/ProfessorsTimesheet" Icon="@Icons.Material.Filled.CalendarViewWeek" Match="NavLinkMatch.All">Orario Professori</MudNavLink>
-    @if (User.CodiceRuolo==4 || User.CodiceRuolo==3)
+    @if (User.CodiceRuolo>=3)
     {
-        <MudNavLink OnClick="GetSubjects"  Icon="@Icons.Material.Filled.School" Match="NavLinkMatch.All">Materie</MudNavLink>
+        <MudNavLink OnClick="@(() => StudentNavigate("Subjects"))"  Icon="@Icons.Material.Filled.School" Match="NavLinkMatch.All">Materie</MudNavLink>
+        <MudNavLink OnClick="@(() => StudentNavigate("Attendance"))" Icon="@Icons.Material.Filled.PersonOutline">Assenze</MudNavLink>
     }
-    <MudNavLink Href="/Students" Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.People">Studenti</MudNavLink>
-</MudNavMenu>
+    else if(User.CodiceRuolo<=2)
+    {
+        <MudNavLink Href="/Classes" Icon="@Icons.Material.Filled.Assignment" Match="NavLinkMatch.All">Classi</MudNavLink>
+    }
+    
+    </MudNavMenu>
 
 
 @code
@@ -23,11 +28,25 @@
         if (User.CodiceRuolo==4)
         {
             NavigationManager.NavigateTo($"/Subjects/{Db.Studentis.First(x => x.CodiceAccount==User.Username).Cf}");
-    }
+        }
         else
         {
             var tmp = Db.Genitoris.Include(x => x.CodiceStudentes).First(x => x.CodiceAccount == User.Username).CodiceStudentes.First().Cf;
             NavigationManager.NavigateTo($"/Subjects/{tmp}");
         }
     }
+
+    private void StudentNavigate(string page)
+    {
+        if (User.CodiceRuolo==4)
+        {
+            NavigationManager.NavigateTo($"/{page}/{Db.Studentis.First(x => x.CodiceAccount==User.Username).Cf}");
+        }
+        else
+        {
+            var tmp = Db.Genitoris.Include(x => x.CodiceStudentes).First(x => x.CodiceAccount == User.Username).CodiceStudentes.First().Cf;
+            NavigationManager.NavigateTo($"/{page}/{tmp}");
+        }
+    }
+    
 }

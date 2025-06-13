@@ -1,87 +1,62 @@
-@page "/Students"
+@page "/Classes"
 @using Learnova.Context
 @using Learnova.Entities
 @using Microsoft.EntityFrameworkCore
-@inject IDialogService DialogService
-@inject NavigationManager NavigationManager
 @inject Account User
+@inject NavigationManager NavigationManager
 
-<MudText Class="ml-5" Typo="Typo.h2">Classi e studenti</MudText>
-<MudContainer Class="mt-2">
-    <MudSelect @bind-Value="selectedClass" T="Classi" Label="Seleziona classe">
-        @foreach (Classi classe in classi.OrderBy(x => x.Id))
-        {
-            <MudSelectItem T="Classi" Value="@classe">
-                @($"{classe.CodicePianoStudioNavigation.Anno} {classe.Sezione}")
-            </MudSelectItem>
-        }
-    </MudSelect>
-</MudContainer>
-
-@if (studenti?.Any() == true)
-{
-    <MudPaper Class="p-2" Elevation="2">
-        <MudList T="Studenti" Dense="true">
-            @foreach (var s in studenti.OrderBy(x => x.Cognome))
+<MudContainer>
+    <MudPaper Class="my-2 py-3 px-3">
+        <MudText Typo="Typo.h3">Le @(User.CodiceRuolo==2? "tue":"") classi</MudText>
+    </MudPaper>
+    <MudDivider></MudDivider>
+    <MudPaper>
+        <MudList T="Classi">
+            @foreach (Classi c in classes)
             {
-                //aaaaaNot following the DRY rule...
-                if (User.CodiceRuolo == 1 || User.CodiceRuolo == 2)
-                {
-                    <MudListItem T="Studenti" @onclick="() => SelectStudent(s)" Class="student-item">
-                        <MudAvatar Color="Color.Primary" Size="Size.Medium" Class="mud-avatar-text">
-                            @($"{(string.IsNullOrEmpty(s.Cognome) ? "" : s.Cognome[0])}{(string.IsNullOrEmpty(s.Nome) ? "" : s.Nome[0])}".ToUpper())
-                        </MudAvatar>
-                        <MudText Typo="Typo.h5" Class="ml-3">
-                            @($"{s.Cognome} {s.Nome}")
-                        </MudText>
+                <MudListItem OnClick="@(() =>NavigationManager.NavigateTo($"/Students/{c.Id}"))" Class="d-flex" T="Classi">
+                    <MudGrid>
+                        <MudItem xs="3">
+                            <MudAvatar Class="d-inline" Elevation="2" Size="Size.Large" Color="Color.Primary">@(c.CodicePianoStudioNavigation.Anno + c.Sezione)</MudAvatar>
+                            <MudText  Class="d-inline  pl-4" Typo="Typo.h5">@c.CodicePianoStudioNavigation.CodiceIndirizzoNavigation.Nome</MudText>
+                        </MudItem>
+                        <MudItem xs="8">
+                            <MudText Typo="Typo.h6">Studenti: @c.Studentis.Count</MudText>
+                        </MudItem>
+                        <MudItem Class="object-right" xs="1">
+                            <MudIcon  Icon="@Icons.Material.Filled.ArrowForwardIos"></MudIcon>
+                        </MudItem>
+                    </MudGrid>
                     
-                        <MudSpacer />
-                        <MudIcon Icon="@Icons.Material.Filled.KeyboardArrowRight" Color="Color.Default" />
-                        <MudText Typo="Typo.subtitle2" Class="ml-3">
-                            Mostra Voti
-                        </MudText>
-                    </MudListItem>
-                }
-                else
-                {
-                    <MudListItem T="Studenti" Class="student-item">
-                        <MudAvatar Color="Color.Primary" Size="Size.Medium" Class="mud-avatar-text">
-                            @($"{(string.IsNullOrEmpty(s.Cognome) ? "" : s.Cognome[0])}{(string.IsNullOrEmpty(s.Nome) ? "" : s.Nome[0])}".ToUpper())
-                        </MudAvatar>
-                        <MudText Typo="Typo.h5" Class="ml-3">
-                            @($"{s.Cognome} {s.Nome}")
-                        </MudText>
-                    </MudListItem>
-                }
+                </MudListItem>
             }
         </MudList>
     </MudPaper>
-}
 
-@code
-{
-    public IQueryable<Studenti> studenti { get; set; }
-    public IQueryable<Classi> classi { get; set; }
-    public Classi selectedClass { get; set; }
+</MudContainer>
+@code {
+    public MyDbContext Db { get; set; }
+    public List<Classi> classes { get; set; }
 
     protected override void OnInitialized()
     {
-        MyDbContext dbContext = new MyDbContext();
-        classi = dbContext.Classis.Include(x=>x.CodicePianoStudioNavigation);
-        studenti = dbContext.Studentis
-            .Where(x => x.CodiceClasse == selectedClass.Id);
-        if (User.CodiceRuolo == 3 || User.CodiceRuolo == 4)
+        Db = new MyDbContext();
+        if (User.CodiceRuolo==2)
         {
-            selectedClass = dbContext.Classis.First(x=>x.Id==dbContext.Studentis.First(s => s.CodiceAccount==User.Username).CodiceClasse);
+            classes = Db.Insegnamentos.Include(x => x.CodiceClasseNavigation)
+                .Include(x => x.CodiceClasseNavigation.Studentis)
+                .Include(x => x.CodiceClasseNavigation.CodicePianoStudioNavigation.CodiceIndirizzoNavigation)
+                .Include(x => x.CodiceClasseNavigation.CodicePianoStudioNavigation)
+                .Include(x => x.CodiceProfessoreNavigation)
+                .Where(x => x.CodiceProfessoreNavigation.CodiceAccount == User.Username).Select(x => x.CodiceClasseNavigation).ToList();
         }
         else
         {
-            selectedClass = classi.First();
+            classes = Db.Classis.Include(x => x.CodicePianoStudioNavigation)
+                .Include(x => x.Studentis)
+                .Include(x => x.CodicePianoStudioNavigation.CodiceIndirizzoNavigation).ToList();
         }
-    }
+        Db.Dispose();
+    }   
 
-    private async Task SelectStudent(Studenti student)
-    {
-            NavigationManager.NavigateTo($"/Subjects/{student.Cf}");
-    }
 }

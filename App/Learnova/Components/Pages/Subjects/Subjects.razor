@@ -5,6 +5,7 @@
 @using Microsoft.EntityFrameworkCore
 @inject IDialogService DialogService
 @inject Account User
+
 <MudText Typo="Typo.h3" Class="mb-4">Overview Materie</MudText>
 <MudContainer  MaxWidth="MaxWidth.Large" Class="m-4 d-flex">
     <MudPaper Class="d-flex flex-column px-5 py-5" Elevation="2" >
@@ -25,7 +26,7 @@
     <MudContainer Class="ml-2" MaxWidth="MaxWidth.Large">
         
         <MudExpansionPanels >
-            @foreach (Materie m in Student.CodiceClasseNavigation.CodicePianoStudioNavigation.CodiceMateria)
+            @foreach (Materie m in (Student.CodiceClasseNavigation.CodicePianoStudioNavigation.CodiceMateria))
             {
                 <MudExpansionPanel>
                     <TitleContent>
@@ -34,7 +35,7 @@
                             <MudContainer  Class="p-5">
                                 <MudText Class="p-5">@m.Nome</MudText>
                             </MudContainer>
-                            @if (User.CodiceRuolo == 1 || User.CodiceRuolo == 2)
+                            @if (CheckPermission(m))
                             {
                                 <MudButton OnClick="@(()=> AddGrade(@m))" Color="Color.Primary">Aggiungi Voto</MudButton>
                                 
@@ -46,7 +47,7 @@
                             <HeaderContent>
                                 <MudTh>Voto</MudTh>
                                 <MudTh>Descrizione</MudTh>
-                                @if (User.CodiceRuolo == 1 || User.CodiceRuolo == 2)
+                                @if (CheckPermission(m))
                                 {
                                     <MudTh></MudTh>
                                 }
@@ -56,10 +57,11 @@
                                     <MudAvatar Color="Color.Secondary">@context.Cifra.ToString("N2")</MudAvatar>
                                 </MudTd>
                                 <MudTd>@context.Descrizione</MudTd>
-                                @if (User.CodiceRuolo == 1 || User.CodiceRuolo == 2)
+                                @if (CheckPermission(m))
                                 {
                                     <MudTd>
                                         <MudButton OnClick="@(() => EditGrade(@context))" Color="Color.Tertiary">Modifica</MudButton>
+                                        <MudButton OnClick="@(() =>Delete(@context))" Color="Color.Error">Elimina</MudButton>
                                     </MudTd>
                                 }
                             </RowTemplate>
@@ -82,12 +84,16 @@
     private double? overallAverage;
     private string[] subjects = { "Matematica", "Italiano", "Latino", "Informatica","Storia" };
 
-
+    private bool CheckPermission(Materie m)
+    {
+        return (User.CodiceRuolo == 1 || (User.CodiceRuolo == 2 && Db.Materies.Include(x => x.CodiceProfessores).First(x => x.Id == m.Id).CodiceProfessores.Any(x => x.CodiceAccount == User.Username)));
+    }
     
     protected override void OnInitialized()
     {
         Db = new MyDbContext();
         Student = Db.Studentis.Include(x => x.Votis)
+            
             .Include(x => x.CodiceClasseNavigation)
             .Include(x => x.CodiceClasseNavigation.CodicePianoStudioNavigation)
             .Include(x => x.CodiceClasseNavigation.CodicePianoStudioNavigation.CodiceMateria)
@@ -109,7 +115,7 @@
             g.Cifra = edited.Cifra;
             g.Descrizione = edited.Descrizione;
             g.Data = edited.Data;
-            Db.SaveChanges();
+            await Db.SaveChangesAsync();
         }
         CalculateOverall();
         StateHasChanged();
@@ -122,7 +128,8 @@
         {
             {x => x.grade, new Voti()
             {
-                CodiceMateria = subject.Id
+                CodiceMateria = subject.Id,
+                CodiceStudente = Student.Cf
             }}
         };
         var dialogReference = await DialogService.ShowAsync<GradeDialog>("Add",parameters);
@@ -130,7 +137,7 @@
         if (!result.Canceled)
         {
             Voti? added = result.Data as Voti;
-            Db.Votis.Add(new Voti()
+            await Db.Votis.AddAsync(new Voti()
             {
                 Cifra = added.Cifra,
                 Descrizione = added.Descrizione,
@@ -138,12 +145,18 @@
                 CodiceMateria = added.CodiceMateria,
                 CodiceStudente = Student.Cf,
             });
-            Db.SaveChanges();
+            await Db.SaveChangesAsync();
         }
         CalculateOverall();
         StateHasChanged();
     }
 
+    private void Delete(Voti grade)
+    {
+        Db.Votis.Remove(grade);
+        Db.SaveChanges();
+        CalculateOverall();
+    }
     private void CalculateOverall() => overallAverage = Student.Votis.GroupBy(x => x.CodiceMateria).Average(x => x.Average(y => y.Cifra));
 
 

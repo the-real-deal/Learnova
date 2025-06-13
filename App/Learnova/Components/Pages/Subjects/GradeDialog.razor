@@ -7,18 +7,27 @@
     <DialogContent>
         <MudTextField @bind-Value="@grade.Cifra" Format="F2" T="double" Label="Voto"></MudTextField>
         <MudTextField @bind-Value="@grade.Descrizione" AutoGrow="true" InputType="InputType.Text" T="string" Label="Descrizione"></MudTextField>
+        <MudDatePicker @bind-Date="date" Label="Data dell'assegnazione del voto"></MudDatePicker>
     </DialogContent>
     <DialogActions>
         <MudButton ButtonType="ButtonType.Button" Variant="Variant.Text" Color="Color.Primary" OnClick="@MudDialog.Cancel">Annulla</MudButton>
-        <MudButton ButtonType="ButtonType.Button" Variant="Variant.Filled" Color="Color.Secondary" OnClick="@(()=> MudDialog.Close(grade))">Salva</MudButton>
+        <MudButton ButtonType="ButtonType.Button" Variant="Variant.Filled" Color="Color.Secondary" OnClick="Save">Salva</MudButton>
     </DialogActions>
 </MudDialog>
 
 @code {
     [Parameter] 
     public Voti grade { get; set; }
+
+    public DateTime? date { get; set; }
     [CascadingParameter]
     IMudDialogInstance MudDialog { get; set; }
+    
 
+    private void Save()
+    {
+        grade.Data = date.Value;
+        MudDialog.Close(grade);
+    }
     
 }

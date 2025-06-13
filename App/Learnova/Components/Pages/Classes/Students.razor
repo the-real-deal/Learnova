@@ -1,0 +1,63 @@
+@page "/Students/{Id:int}"
+@using Learnova.Context
+@using Learnova.Entities
+@using Microsoft.EntityFrameworkCore
+@inject IDialogService DialogService
+@inject NavigationManager NavigationManager
+@inject Account User
+
+<MudText Class="ml-5" Typo="Typo.h2">Classi e studenti</MudText>
+
+@if (studenti?.Any() == true)
+{
+    <MudPaper Class="p-2 mx-18" Elevation="2">
+        <MudList T="Studenti" Dense="true">
+            @foreach (var s in studenti.OrderBy(x => x.Cognome))
+            {
+                //aaaaaNot following the DRY rule...
+                if (User.CodiceRuolo <=2)
+                {
+                    <MudListItem T="Studenti" @onclick="() => SelectStudent(s)" Class="student-item">
+                        <MudGrid>
+                            <MudItem xs="10"> 
+                                <MudAvatar Color="Color.Primary" Size="Size.Large" Class="mud-avatar-text">
+                                    @($"{(string.IsNullOrEmpty(s.Cognome) ? "" : s.Cognome[0])}{(string.IsNullOrEmpty(s.Nome) ? "" : s.Nome[0])}".ToUpper())
+                                </MudAvatar>
+                                <MudText Typo="Typo.h5" Class="ml-3 d-inline">
+                                    @($"{s.Cognome} {s.Nome}")
+                                </MudText>
+                            </MudItem>
+                            <MudItem xs="1">
+                                <MudText Typo="Typo.subtitle2"  Class="ml-3">
+                                    Mostra Voti
+                                </MudText>
+                                <MudIcon Class="object-right" Icon="@Icons.Material.Filled.KeyboardArrowRight" Color="Color.Default"/>
+                            </MudItem>
+                            <MudItem xs="1">
+                                <MudButton OnClick="@(()=> NavigationManager.NavigateTo($"/Attendance/{@s.Cf}"))">Vedi assenze</MudButton>
+                            </MudItem>
+                        </MudGrid>
+                    </MudListItem>
+                }
+                
+            }
+        </MudList>
+    </MudPaper>
+}
+
+@code
+{
+    public IEnumerable<Studenti> studenti { get; set; }
+    [Parameter]
+    public int Id { get; set; }
+    protected override void OnInitialized()
+    {
+        MyDbContext dbContext = new MyDbContext();
+        studenti = dbContext.Classis.Include(x => x.Studentis).First(x => x.Id == Id).Studentis;
+    }
+
+    private async Task SelectStudent(Studenti student)
+    {
+            NavigationManager.NavigateTo($"/Subjects/{student.Cf}");
+    }
+}
