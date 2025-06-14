@@ -8,7 +8,7 @@
     <HeaderContent>
         <MudTh>Data</MudTh>
         <MudTh>Descrizione</MudTh>
-        @if (User.CodiceRuolo <= 3)
+        @if (User.CodiceRuolo <= 2)
         {
             <MudTh>
                 <MudButton OnClick="@(()=>AssignNota(CF) )" Color="Color.Tertiary">Aggiungi Nota Disciplinare</MudButton>
@@ -19,7 +19,7 @@
         <MudTd>@context.Data.ToShortDateString()</MudTd>
         <MudTd>@context.Descrizione</MudTd>
 
-        @if (User.CodiceRuolo <= 3)
+        @if (User.CodiceRuolo <= 2)
         {
             <MudTd>
                 <MudButton Color="Color.Secondary" OnClick="@(() =>Delete(@context) )">Delete</MudButton>

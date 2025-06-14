@@ -9,7 +9,7 @@
         <MudTh>Data</MudTh>
         <MudTh>Descrizione</MudTh>
         <MudTh>Giustifica</MudTh>
-        @if (User.CodiceRuolo <= 3)
+        @if (User.CodiceRuolo <= 2)
         {
             <MudTh>
                 <MudButton OnClick="@(()=>Absent(CF) )" Color="Color.Tertiary">Aggiungi Assenza</MudButton>
