@@ -9,7 +9,7 @@
     <MudDivider></MudDivider>
     @if (User.CodiceRuolo == 3)
     {
-        <MudText Typo="Typo.subtitle1">@($"Genitore di {Db.Genitoris.Include(x => x.CodiceStudentes).First().CodiceStudentes.Select(x =>$"{x.Nome} {x.Cognome}" ).First()}")</MudText>
+        <MudText Typo="Typo.subtitle1">@($"Genitore di {Db.Genitoris.Include(x => x.CodiceStudentes).First(x => x.CodiceAccount == User.Username).CodiceStudentes.Select(x =>$"{x.Nome} {x.Cognome}" ).First()}")</MudText>
     }
    
     
